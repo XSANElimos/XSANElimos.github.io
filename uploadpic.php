@@ -34,7 +34,7 @@ if ((($_FILES["file"]["type"] == "image/gif")
         
         // 判断当前目录下的 Img 目录是否存在该文件
         // 如果没有 Img 目录，你需要创建它，upload 目录权限为 777
-		$upload_file_name=$_POST["FileNumber"].$extension;
+		$upload_file_name=$_GET["FileNumber"].$extension;
         
 		if (file_exists("Img/" . $_FILES["file"]["name"]))
 		{
