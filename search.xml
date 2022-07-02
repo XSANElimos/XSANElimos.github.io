@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Route And Switch</title>
+    <url>/2022/07/02/Route-And-Switch/</url>
+    <content><![CDATA[<h1 id="路由与交换"><a href="#路由与交换" class="headerlink" title="路由与交换"></a>路由与交换</h1><p><a href="https://www.notion.so/41248682b2614264bf1f67b9b13a0cbf">网络管理</a> 知识点回顾</p>
+<p>1 交换机与路由器的连接这是必须掌握的<br>2 rip的环路引起的原因、避免方案也是必须的，还有一些细节一点的比如：跳数值，报文作用等<br>3 ospf是重点，大体的如：算法描述和计算过程，最后一个过程里要知道涉及到哪些些数据结构里的算法。<br>还有报文类型，哪些报文是用来干什么的，LSA类型，每个LSA类型是用来干什么的。<br>支持的网络类型，要知道哪些是需要选举DR BDR哪些不要，选举的好处是什么 要会比较<br>IP地址  路由器ID  区域ID的表示方法<br>3 BGP里难度不会很高，需要知道BGP是用来干嘛的，AS内与AS间为什么会产生环路，解决环路的方法有哪些。<br>BGP的报文类型，作用，路由优选顺序(知道顺序即可)，水平分割等。<br>课上讲过的案例也要看<br>4 防火墙的分类，作用，安全区域等<br>5 前缀列表，课件上的例子一定好好看<br>6.路由策略和PBR，知道要知道他们的区别，应用范围（切切）</p>
+<h1 id="设备"><a href="#设备" class="headerlink" title="设备"></a>设备</h1><h2 id="交换机的作用"><a href="#交换机的作用" class="headerlink" title="交换机的作用"></a>交换机的作用</h2><ol>
+<li>学习MAC地址</li>
+<li>转发数据帧</li>
+<li>连接不同网络</li>
+<li>划分局域网</li>
+</ol>
+<h2 id="路由器的作用"><a href="#路由器的作用" class="headerlink" title="路由器的作用"></a>路由器的作用</h2><ul>
+<li>路由功能：报文的路径决策、负载均衡、多媒体传输等</li>
+<li>智能化网络服务：QoS、访问列表（防火墙）、验证、授权、计费、链路备份、调试和管理等</li>
+</ul>
+<h2 id="交换机与路由器的连接🐿️"><a href="#交换机与路由器的连接🐿️" class="headerlink" title="交换机与路由器的连接🐿️"></a>交换机与路由器的连接🐿️</h2><ul>
+<li>将交换机的接口配置为access</li>
+<li>将交换机的接口通过设置pvid剥离tag标</li>
+<li>将交换机的接口 undo switchport ,直接配置ip地址</li>
+</ul>
+<p>相当于关闭交换机的二层接口，只允许使用三层接口</p>
+<ul>
+<li>将路由器的接口switchport ,在vlanif内配置ip地址</li>
+</ul>
+<p>相当于启用路由器的二层接口，需要通过vlan来配置ip</p>
+<h1 id="网络地址的划分与优化"><a href="#网络地址的划分与优化" class="headerlink" title="网络地址的划分与优化"></a>网络地址的划分与优化</h1><p>每个子网内有多少个主机号等基础知识</p>
+<hr>
+<h1 id="路由协议"><a href="#路由协议" class="headerlink" title="路由协议"></a>路由协议</h1><h1 id="RIP"><a href="#RIP" class="headerlink" title="RIP"></a>RIP</h1><ul>
+<li>典型的距离矢量路由协议,域间路由协议</li>
+<li>Routing Information Protocols,路由信息协议，使用520端口，基于UDP</li>
+</ul>
+<h3 id="为什么只适用于小型网络？"><a href="#为什么只适用于小型网络？" class="headerlink" title="为什么只适用于小型网络？"></a>为什么只适用于小型网络？</h3><p>为了防止RIP路由在网络中被无限泛洪从而跳数累加到无穷大，RIP规定：路由的最大跳数为15跳，也就是如果度量值大于等于16跳则被视为不可达；</p>
+<p>最大跳数的设定虽然解决了度量值计数到无穷大的问题，但是却也极大地限制了RIP所能支持的网络的规模</p>
+<h3 id="报文类型"><a href="#报文类型" class="headerlink" title="报文类型"></a>报文类型</h3><ul>
+<li>请求（Request）报文🐿️</li>
+</ul>
+<p>用于向直连的路由器请求全部或者部分路由信息</p>
+<ul>
+<li>响应（Response）报文🐿️</li>
+</ul>
+<p>用于发送路由更新，或对请求报文的回应，也可由路由器自主发出</p>
+<h3 id="环路出现原因🤐"><a href="#环路出现原因🤐" class="headerlink" title="环路出现原因🤐"></a>环路出现原因🤐</h3><p>路由器接收到了从本地发出去的，对方路由认为可达的不可达路由，并错误认为通过对方可达</p>
+<h3 id="环路的解决方案🤐"><a href="#环路的解决方案🤐" class="headerlink" title="环路的解决方案🤐"></a>环路的解决方案🤐</h3><ul>
+<li><strong>定义最大度量以防止计数至无穷大</strong></li>
+</ul>
+<p>为了防止RIP路由在网络中被无限泛洪从而跳数累加到无穷大，RIP规定：路由的最大跳数为15跳，也就是如果度量值大于等于16跳则被视为不可达</p>
+<ul>
+<li><strong>水平分割</strong></li>
+</ul>
+<p>路由器的某个接口接收到的路由不能再从该接口通告出去</p>
+<ul>
+<li><strong>毒性逆转</strong></li>
+</ul>
+<p><strong>毒性逆转</strong>（<strong>带毒性路由的水平分割</strong>）是指RIP从某个接口学到路由后，从原接口发回邻居路由器，并将该路由的开销设置为16（即指明该路由不可达）。利用这种方式，可以清除对方路由表中的无用路由。</p>
+<p><strong>毒性路由</strong>是指路由信息在路由表中失效时，先将度量值变为无穷大，而不是马上从路由表中删掉这条路由信息，再将其信息发布出去，这样相邻的路由器就得知这条路由己无效了。</p>
+<ul>
+<li><strong>抑制计时器</strong></li>
+</ul>
+<p>一条路由信息无效之后，一段时间内这条路由都处于抑制状态，即在一定时间内不再接收关于同一目的地址的路由更新</p>
+<ul>
+<li><strong>触发更新</strong></li>
+</ul>
+<p>当路由信息发生变化时，立即向邻居设备发送触发更新报文，而不用等待更新定时器超时，从而避免产生路由环路</p>
+<h2 id="RIP的计时器"><a href="#RIP的计时器" class="headerlink" title="RIP的计时器"></a>RIP的计时器</h2><ul>
+<li>更新计时器： 30s，路由器周期性泛洪路由表的时间间隔</li>
+<li>老化计时器：180s，一条路由信息在路由表中的最大不被更新的时间</li>
+<li>垃圾回收计时器：120s，老化的路由信息在被删除前的停留时间</li>
+</ul>
+<h2 id="RIP网络的故障排除"><a href="#RIP网络的故障排除" class="headerlink" title="RIP网络的故障排除"></a>RIP网络的故障排除</h2><p>network :用于激活相应接口上的rip功能（或：宣告网络），由于rip的version 2能自动汇总路由，故其后必须是主类网络</p>
+<p>如果接口启用水平分割、毒性逆转，则不进行汇总</p>
+<p>若希望既开启水平分割或毒性逆转，又开启自动汇总，可在rip的配置视图下配置命令：</p>
+<p><code>[R-rip-1]summary always</code></p>
+<h1 id="OSPF"><a href="#OSPF" class="headerlink" title="OSPF"></a>OSPF</h1><ul>
+<li>Open Shortest Path First，开放式最短路径优先</li>
+<li>链路状态类型协议，域内路由协议</li>
+<li>适用于中大型网络</li>
+</ul>
+<h2 id="路由计算过程🦂"><a href="#路由计算过程🦂" class="headerlink" title="路由计算过程🦂"></a>路由计算过程🦂</h2><ol>
+<li>路由器之间发现并建立邻居关系</li>
+<li>每台路由器产生并向邻居泛洪链路状态信息，同时接收来自其他路由器状态信息，完成LSDB（Link State Database：链路状态数据库）的同步</li>
+<li>每台路由器基于LSDB通过SPF（Shortest Path First）算法，计算得到一棵以自己为根的SPT(Shortest Path Tree)，再以SPT为基础计算去往各邻居连接网络的最优路由，并形成路由表。</li>
+</ol>
+<h2 id="三张表💕"><a href="#三张表💕" class="headerlink" title="三张表💕"></a>三张表💕</h2><ul>
+<li>邻居表（Peer table）</li>
+</ul>
+<p><code>display ospf peer</code><br>在路由器交互链路状态通告之前，直连路由器需要建立邻居关系。当接口激活OSPF后，该接口会周期性地发送hello报文用于发现直连链路上的邻居。当在接口上发现邻居后，邻居信息会被写入路由器的邻居表中。</p>
+<ul>
+<li>链路状态数据库（Link-state database，简称LSDB）</li>
+</ul>
+<p><code>display ospf lsdb</code><br>OSPF在网络中泛洪链路状态信息，这些信息即为LSA（Link State Advertisement，链路状态通告），用来描述网络拓扑信息。LSA被写入OSPF路由器的LSDB中。</p>
+<ul>
+<li>OSPF路由表（Routing table）</li>
+</ul>
+<p><code>display ospf routing</code><br>基于LSDB进行SPF计算得到一棵以自己为根、无环的最短路径树。基于最短路径树发现到达全网各个网段的最佳路径，并将最佳路径（即路由信息）写入得出OSPF路由表。</p>
+<h2 id="OSPF报文类型"><a href="#OSPF报文类型" class="headerlink" title="OSPF报文类型"></a>OSPF报文类型</h2><ul>
+<li>Hello报文</li>
+</ul>
+<blockquote>
+<p>周期性发送，用来发现和维持OSPF邻居关系</p>
+</blockquote>
+<ul>
+<li>DD报文 Database Description packet</li>
+</ul>
+<blockquote>
+<p>描述本地LSDB的摘要信息，用于两台设备进行数据库同步</p>
+</blockquote>
+<ul>
+<li>LSR报文 Link State Request packet</li>
+</ul>
+<blockquote>
+<p>向对方请求所需的LSA,设备只有在OSPF邻居双方成功交换DD报文后才会向对方发出LSR报文</p>
+</blockquote>
+<ul>
+<li>LSU报文 Link State Update packet</li>
+</ul>
+<blockquote>
+<p>用于向对方发送其所需要的LSA</p>
+</blockquote>
+<ul>
+<li>LSAck报文 Link State Acknowledgment packet</li>
+</ul>
+<blockquote>
+<p>用来对收到的LSA进行确认</p>
+</blockquote>
+<h2 id="LSA-链路状态通告🧠"><a href="#LSA-链路状态通告🧠" class="headerlink" title="LSA 链路状态通告🧠"></a><strong>LSA</strong> 链路状态通告🧠</h2><h3 id="链路状态"><a href="#链路状态" class="headerlink" title="链路状态"></a>链路状态</h3><ul>
+<li>init (hello报文)</li>
+<li>2-way(hello报文)   （邻居关系）</li>
+<li>fffexstart (DD报文)</li>
+<li>exchange(DD报文)</li>
+<li>loading(LSR,LSU,LSAck报文)</li>
+<li>full (hello报文)      （邻接关系）</li>
+</ul>
+<p>设计LSA在区域里面可以减少链路资源消耗</p>
+<aside>
+🔥 在一个互联互通的OSPF网络里面 每一个区域里面都有12345类LSA ，但是边缘区域可以只要123类路由，只需要包含到达ABR边界路由器的路由即可
+
+</aside>
+
+<ul>
+<li>1 Router LSA</li>
+</ul>
+<blockquote>
+<p>每台OSPF路由器都会产生，用来描述本设备链接到该区域的直连接口状态以及COST等信息</p>
+</blockquote>
+<ul>
+<li>2 Network LSA</li>
+</ul>
+<blockquote>
+<p>由DR 路由器产生，用来描述在该MA 网络上DR直连的所有OSPF路由器的RouterID (包含自己)，以及该MA网络的网络掩码</p>
+</blockquote>
+<blockquote>
+<p>没有COST字段</p>
+</blockquote>
+<ul>
+<li>[ABR]  3 Network Summary LSA</li>
+</ul>
+<blockquote>
+<p>归纳本区域信息汇总后交付到其他区域，用于OSPF区域间路由计算</p>
+</blockquote>
+<aside>
+📌 以上1，2，3类已经可以完整描述OSPF网络的所有信息
+
+</aside>
+
+<ul>
+<li>[ABR] 4 ASBR summary LSA</li>
+</ul>
+<blockquote>
+<p>用于描述ASBR : 使用重发布来描述两个不同协议的区域</p>
+</blockquote>
+<blockquote>
+<p>实际是主机路由，用于描述到AS边界路由器的路由</p>
+</blockquote>
+<blockquote>
+<p>使用32位掩码（RouterID）来匹配主机路由</p>
+</blockquote>
+<ul>
+<li>[ASBR] 5 AS External LSA</li>
+</ul>
+<blockquote>
+<p>描述外部路由的LSA</p>
+</blockquote>
+<ul>
+<li>[ASBR] 7 NSSA LSA</li>
+</ul>
+<blockquote>
+<p>外部路由标志O_ASE 即 OSPF AS External</p>
+</blockquote>
+<blockquote>
+<p>内容与LSA5几乎相同，但NSSA LSA仅在始发此LSA的NSSA内泛洪， 不能直接进入骨干网络，NSSA的ABR会将LSA7转换为5LSA注入骨干网络</p>
+</blockquote>
+<ul>
+<li>[ASBR]  NSSA External NSA</li>
+</ul>
+<blockquote>
+<p>骨干网络里面不会有LSA 7，只存在于NSSA</p>
+</blockquote>
+<h2 id="OSPF支持的网络类型👁️"><a href="#OSPF支持的网络类型👁️" class="headerlink" title="OSPF支持的网络类型👁️"></a>OSPF支持的网络类型👁️</h2><ul>
+<li>点到点网络（Point-to-Point，P2P）</li>
+</ul>
+<p>[链路层协议]：PPP链路 HDLC链路</p>
+<ul>
+<li>点到多点网络（Point-to-Multipoint， P2MP ）</li>
+</ul>
+<p> [链路层协议]：手动设置</p>
+<ul>
+<li>广播型多路访问网络（Broadcast-Multi-Access，BMA）</li>
+</ul>
+<p>[链路层协议]：Ethernet以太网 FDDI光纤分布式数据接口</p>
+<ul>
+<li>非广播型多路访问网路（Non- Broadcast-Multi-Access， NBMA ）</li>
+</ul>
+<p>[链路层协议]：FR帧中继 ATM异步传输模式</p>
+<ul>
+<li>虚链路（Virtual Link）</li>
+</ul>
+<h2 id="DR和BDR"><a href="#DR和BDR" class="headerlink" title="DR和BDR"></a>DR和BDR</h2><h3 id="DR的作用"><a href="#DR的作用" class="headerlink" title="DR的作用"></a>DR的作用</h3><p>减少MA网络中报文交互的数量，节省链路资源</p>
+<h3 id="BDR的作用"><a href="#BDR的作用" class="headerlink" title="BDR的作用"></a>BDR的作用</h3><p>作为DR的备份，时刻监视DR的状态，一旦DR出现故障就成为新的DR</p>
+<h3 id="DR-BDR选取原则："><a href="#DR-BDR选取原则：" class="headerlink" title="DR/BDR选取原则："></a>DR/BDR选取原则：</h3><ol>
+<li>比较优先级 priority，优先级大的会被选举为DR（优先级默认都为1）<br>（注意：若将优先级设为0，则不参与DR、BDR的选举）</li>
+<li>优先级相同的情况下，Router-id大路由器就会被选举成DR</li>
+<li>先运行ospf协议的会被选举成DR</li>
+<li>一旦DR、BDR确定，正常情况下很难被更改</li>
+</ol>
+<h3 id="为什么要选举DR和BDR？在什么样的网络里选"><a href="#为什么要选举DR和BDR？在什么样的网络里选" class="headerlink" title="为什么要选举DR和BDR？在什么样的网络里选"></a>为什么要选举DR和BDR？在什么样的网络里选</h3><p>BMA和NBMA网络需要选举DR和BDR</p>
+<p>好处</p>
+<p>形成邻居状态，在没有选举之前，有$n *(n-1)/2$ 个邻居关系</p>
+<p>选举之后，有$n-1$个邻居关系，通过邻居关系的数量来展开DR和BDR的好处</p>
+<p>减少邻居关系，节约带宽资源</p>
+<h3 id="不想让某些路由器参与DR与BDR的选举的做法🦴"><a href="#不想让某些路由器参与DR与BDR的选举的做法🦴" class="headerlink" title="不想让某些路由器参与DR与BDR的选举的做法🦴"></a>不想让某些路由器参与DR与BDR的选举的做法🦴</h3><p>将DR优先级设置为0，它就不会参与这个网段上DR/BDR的选取了，它的角色永远就是DR Other</p>
+<h1 id="特殊区域"><a href="#特殊区域" class="headerlink" title="特殊区域"></a>特殊区域</h1><ul>
+<li>普通区域</li>
+</ul>
+<p>缺省情况下，OSPF区域被定义为普通区域。包括标准区域和骨干区域(Area0)</p>
+<ul>
+<li>存根区域 Stub区域</li>
+</ul>
+<p>禁止LSA4 和LSA5泛洪，允许骨干网络进入的LSA3，同时ABR会自动下发LSA3的缺省路由</p>
+<ul>
+<li>完全存根区域 Totally Stub区域</li>
+</ul>
+<p>禁止LSA345泛洪，同时ABR会自动下发LSA3的缺省路由</p>
+<ul>
+<li>非完全末梢区域 NSSA Not-so-stubbt Area</li>
+</ul>
+<p>禁止从骨干网络进入的LSA45,但是允许本地区域注入AS外部的路由，外部路由在NSSA内以LSA7的方式泛洪。NSSA ABR下发一条LSA7缺省路由</p>
+<ul>
+<li>完全非完全末梢区域  Totally NSSA</li>
+</ul>
+<p>在NSSA基础上禁止从骨干网络进入的LSA3，同时NSSA ABR下发一条缺省的LSA3路由</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设置区域类型为stub 无4 无5</span></span><br><span class="line">[sw-ospf-1-0.0.0.1] stub </span><br><span class="line"><span class="comment"># 设置区域类型为total stub 无3 无4 无5 </span></span><br><span class="line">[sw-ospf-1-0.0.0.1] stub no-summary</span><br><span class="line"><span class="comment"># 设置区域类型为nssa  只有 3类 5类 和 7类 只适用于小型</span></span><br><span class="line">[sw-ospf-1-0.0.0.1] total nssa</span><br><span class="line"><span class="comment"># 设置区域类型为nssa  只有 5类 和 7类 只适用于小型</span></span><br><span class="line">[sw-ospf-1-0.0.0.1] nssa no-summary</span><br></pre></td></tr></table></figure>
+
+<p>| Area Type \<br>LSA类型 | 1&amp;2 | 3 | 4 | 5 | 7 |<br>| — | — | — | — | — | — |<br>| 普通区域 | 1 | 1 | 1 | 1 | 0 |<br>| 存根区域 | 1 | 1 | 0 | 0 | 0 |<br>| 完全存根区域 | 1 | 0 | 0 | 0 | 0 |<br>| NSSA区域 | 1 | 1 | 0 | 0 | 1 |</p>
+<h1 id="路由重发布-路由引入"><a href="#路由重发布-路由引入" class="headerlink" title="路由重发布(路由引入)"></a>路由重发布(路由引入)</h1><blockquote>
+<p>将路由信息从一种路由协议发布到另一种路由协议的操作</p>
+</blockquote>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>在网络中部署路由重发布，可以使得路由信息能够在多种路由协议之间实现传递，从而全网的数据能够实现互通</p>
+<ol>
+<li>在RIP进程中import-route OSPF的路由进程</li>
+<li>在OSPF进程中import-route RIP的路由进程</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在边界路由R2中</span></span><br><span class="line">[R2-rip-1]import-route ospf 1 cost 2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置默认cost度量类型为2,指定从OSPF引入的路由条数为2，默认为0</span></span><br><span class="line">[R2-ospf-1]import-route rip 1 cost 10 <span class="built_in">type</span> 2</span><br></pre></td></tr></table></figure>
+
+<aside>
+🌟 LSA5 度量类型type = 1时 外部路由cost = 外部cost+内部cost
+
+</aside>
+
+<aside>
+🌟 LSA5 度量类型type = 2时 外部路由cost = 外部cost
+
+</aside>
+
+<blockquote>
+<p>引入其他路由</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 引入静态路由</span></span><br><span class="line">[R2-ospf-1]import-route static</span><br><span class="line"></span><br><span class="line"><span class="comment"># 引入直连路由</span></span><br><span class="line">[R2-ospf-1]import-route direct</span><br></pre></td></tr></table></figure>
+
+<p>引入成功后，域间路由的路由表中可以看到路由协议为O_ASE的外部路由信息</p>
+<h1 id="BGP（Border-Gateway-Protocol-域间路由协议）"><a href="#BGP（Border-Gateway-Protocol-域间路由协议）" class="headerlink" title="BGP（Border Gateway Protocol 域间路由协议）"></a>BGP（Border Gateway Protocol 域间路由协议）</h1><p>边界网关协议是一种实现自治系统AS之间的路由可达，并选择最佳路由的矢量性协议。</p>
+<h3 id="AS（Autonomous-System）"><a href="#AS（Autonomous-System）" class="headerlink" title="AS（Autonomous System）"></a>AS（Autonomous System）</h3><p>自治系统：指的是同一个组织管理下，使用相同策略的设备的集合</p>
+<h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><p>路径矢量路由协议，基于TCP协议运行(port:179)</p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ol>
+<li>能够承载大批量的路由信息，能够支撑大规模网络。</li>
+<li>提供了丰富的路由策略，能够灵活的进行路由选路，并能指导邻居按策略发布路由。</li>
+<li>能够支撑MPLS/VPN的应用，传递客户VPN路由</li>
+<li>提供了路由聚合和路由衰减功能用于防止路由振荡，有效提高了网络的稳定性</li>
+<li>使用TCP作为其传输层协议（端口号为179），增强网络的可靠性。</li>
+</ol>
+<h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><ul>
+<li>BGP使用TCP为传输层协议，TCP端口号179。路由器之间的BGP会话基于TCP连接而建立。</li>
+<li>运行BGP的路由器被称为BGP发言者（BGP Speaker），或BGP路由器。</li>
+<li>两个建立BGP会话的路由器互为对等体（Peer）。BGP对等体之间交换BGP路由表。</li>
+<li>BGP路由器只发送增量的BGP路由更新，或进行触发更新（不会周期性更新）。</li>
+<li>BGP具有丰富的路径属性和强大的路由策略工具。</li>
+<li>BGP能够承载大批量的路由前缀，用于大规模的网络中。</li>
+</ul>
+<h2 id="对等体Peer"><a href="#对等体Peer" class="headerlink" title="对等体Peer"></a>对等体Peer</h2><h3 id="建立对等体的前提"><a href="#建立对等体的前提" class="headerlink" title="建立对等体的前提"></a>建立对等体的前提</h3><p>路由可达，能建立TCP连接</p>
+<ul>
+<li><strong>EBGP 外部对等体</strong></li>
+</ul>
+<blockquote>
+<p>一般基于直连端口建立，若不是直连端口，则要修改EBGP报文中的<strong>TTL</strong>(TIME TO LIVE:到目的网段的剩余路由器(网段)跳数,若为0则目的地址不可达)字段，该字段默认为1，一般修改为2</p>
+</blockquote>
+<p>俩路由器处于不同自治系统(AS号不同)，且可以互通(即TCP可达)</p>
+<ul>
+<li><strong>IBGP内部对等体</strong></li>
+</ul>
+<blockquote>
+<p>一般基于loopback接口建立，不要求设备必须直连</p>
+</blockquote>
+<p>俩路由器处于相同自治系统(AS号相同)，且可以互通(即TCP可达)</p>
+<h3 id="如何建立对等体"><a href="#如何建立对等体" class="headerlink" title="如何建立对等体"></a>如何建立对等体</h3><aside>
+🏵️ 直连 回环 非直连 可以相邻，也可以不相邻
+
+</aside>
+
+<p>基于非直连的接口建立的对等体需要的配置(静态路由等)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 直连接口建立对等体</span></span><br><span class="line">bgp 12</span><br><span class="line">router-id 2.2.2.2</span><br><span class="line">peer 10.1.12.1 as-number 12 </span><br><span class="line">peer 10.1.23.3 as-number 300</span><br><span class="line"></span><br><span class="line"><span class="comment"># 非直连接口建立对等体</span></span><br><span class="line">bgp 100</span><br><span class="line">router-id 1.1.1.1</span><br><span class="line">peer 2.2.2.2 as-number 200</span><br><span class="line">peer 2.2.2.2 connect-interface loopback 0</span><br><span class="line">peer 2.2.2.2 ebgp-max-hop 200</span><br></pre></td></tr></table></figure>
+
+<h2 id="Origin源"><a href="#Origin源" class="headerlink" title="Origin源"></a>Origin源</h2><ul>
+<li>i</li>
+</ul>
+<p>IGP路由协议</p>
+<ul>
+<li>?</li>
+</ul>
+<p>incomplete 不完整</p>
+<h3 id="报文类型及作用🧐"><a href="#报文类型及作用🧐" class="headerlink" title="报文类型及作用🧐"></a>报文类型及作用🧐</h3><p><strong>Open</strong></p>
+<p>(TCP连接成功后发送)协商BGP邻居的各项参数，建立邻居关系</p>
+<p><strong>Update</strong></p>
+<p>(路由变化时发送)发送BGP路由信息</p>
+<p><strong>Notification</strong></p>
+<p>(运行中发现错误时发送)用于报告错误，中止对等体关系</p>
+<p><strong>Keepalive</strong></p>
+<p>(定时发送)用于维护对等体关系</p>
+<p>Route-refresh</p>
+<p>(路由策略发生变化时发送)请求对等体重新通告路由，只有支持路由刷新的BGP设备会发送和响应此报文</p>
+<p>TTL(EBGP,联邦成员EBGP)</p>
+<p>与OSPF中“邻居”概念类似，但不一定是临接关系</p>
+<h2 id="路由发布"><a href="#路由发布" class="headerlink" title="路由发布"></a>路由发布</h2><p>可以将路由表中的直连路由、静态路由或通过IGP协议学习到的路由发布到BGP</p>
+<h3 id="network"><a href="#network" class="headerlink" title="network"></a>network</h3><p>一次只能发布一个网段</p>
+<h3 id="import-route"><a href="#import-route" class="headerlink" title="import-route"></a>import-route</h3><p>一次能引入多个网段</p>
+<h3 id="aggregate"><a href="#aggregate" class="headerlink" title="aggregate"></a>aggregate</h3><p><strong>手动路由汇总</strong></p>
+<p>通告汇总路由，明细路由也会被通告，且通告会丢失明细路由的路径属性，如as_path</p>
+<p><strong>自动路由汇总</strong></p>
+<p><code>summary automatic</code> 开启自动汇总 但不会通告明细路由</p>
+<p><strong>关键字</strong></p>
+<p>detail-suppressed </p>
+<p>抑制明细路由</p>
+<p>as-set</p>
+<p>通告时继承明细路由的路径属性（如AS_PATH）</p>
+<p>suppress-policy {policyname}</p>
+<p>通告时选择性地抑制明细路由</p>
+<p>atrribute-policy {policyname}</p>
+<p>设置汇总路由属性</p>
+<p>origin-policy {policyname}</p>
+<p>将某条或多条明细路由作为触发产生汇总路由的条件</p>
+<ul>
+<li>应用范围</li>
+<li>对于多个网络如何进行汇总</li>
+</ul>
+<h2 id="AS内的环路和措施"><a href="#AS内的环路和措施" class="headerlink" title="AS内的环路和措施"></a>AS内的环路和措施</h2><p>BGP是距离矢量路由协议，因此会有环路问题，为了解决环路问题，设置了水平分割，在水平分割的情况下，如果要实现BGPAS内全互联，则需要IBGP全互联，这会导致路由器需要维护大量TCP和BGP连接，并且AS内BGP网络的可扩展性较差，因此有两种方案解决，一是实用路由反射器，二是BGP联邦。</p>
+<h2 id="IBGP水平分割"><a href="#IBGP水平分割" class="headerlink" title="IBGP水平分割"></a>IBGP<strong>水平分割</strong></h2><p>路由器不会将自己从IBGP对等体中学习到的路由条目再传递给其他IBGP对等体</p>
+<p><strong>产生原因</strong><br>AS_Path属性仅在路由离开AS时才会被更改，而BGP路由在AS内部传递时，路由的AS_Path属性值不会发生改变，如此一来，IBGP路由的防环就无法依赖AS_Path了。</p>
+<h2 id="路由反射器（Route-Reflector，RR）"><a href="#路由反射器（Route-Reflector，RR）" class="headerlink" title="路由反射器（Route Reflector，RR）"></a><strong>路由反射器（Route Reflector，RR）</strong></h2><h3 id="角色：RR-Client"><a href="#角色：RR-Client" class="headerlink" title="角色：RR,Client"></a><strong>角色：RR,Client</strong></h3><ol>
+<li>如果该路由学习自非Client IBGP对等体，则反射给自己所有的Client</li>
+<li>如果路由学习自Client，则反射给所有非Client IBGP对等体和除了该Client之外的所有Client</li>
+<li>如果路由学习自EBGP对等体，则发送给所有Client和非Client IBGP对等体</li>
+</ol>
+<h3 id="防环"><a href="#防环" class="headerlink" title="防环"></a><strong>防环</strong></h3><p>源ID(Originator_ID)</p>
+<ul>
+<li>如果路由为本地AS始发:则Originator_ID被设置为BGP路由宣告者的Router-ID</li>
+<li>如果路由为非本地AS始发:则Originator_ID被设置为本地AS的边界路由器的Router-ID</li>
+<li>如果AS内存在多个RR:则Originator_ID属性由第一个RR创建，并且不被后续的RR(若有) 所更改</li>
+</ul>
+<aside>
+⚠️ 当BGP路由器收到一条携带Originator_ID属性的IBGP路由，并且Originator_ID属性值与自身的Router-ID相同，则它会忽略关于该条路由的更新(因为这代表出现了路由环路)
+
+</aside>
+
+<p>路由反射簇列表(ClusterList）</p>
+<p>路由反射簇包括反射器RR及其Client。一个AS内允许存在多个路由反射簇。</p>
+<p>每一个簇都有唯一的簇ID（Cluster-ID，缺省时为RR的BGP Router-ID ）。</p>
+<p>当一条路由被反射器反射后，该RR（该簇）的Cluster_ID就会被添加至路由的Cluster_list属性中。</p>
+<aside>
+⚠️ 当RR收到一条携带Cluster_list属性的BGP路由，且该属性值中包含该簇的Cluster_ID时，RR认为该条路由存在环路，因此它将忽略关于该条路由的更新。
+
+</aside>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置本机为RR 并为Cluster指定Client</span></span><br><span class="line">peer 1.1.1.1 reflect-client</span><br><span class="line"><span class="comment"># Client无需配置</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#修改ClusterID</span></span><br><span class="line">reflector cluster-id 22.22.22.22</span><br></pre></td></tr></table></figure>
+
+<h2 id="BGP联邦（Confederation）"><a href="#BGP联邦（Confederation）" class="headerlink" title="BGP联邦（Confederation）"></a><strong>BGP联邦（Confederation）</strong></h2><p>将IBGP变成联邦IBGP，不同联邦AS之间的IBGP变成特殊的联邦EBGP。联邦内的AS号是使用TYPE34的特殊AS_PATH存储，因此对于联邦AS外部而言，联邦成员AS是不可见的。</p>
+<aside>
+⚠️ 联邦内成员AS号不参与AS_Path长度计算
+
+</aside>
+
+<p>通告给联邦的BGP路由，Next_Hop，MED，Local_Preference属性在整个联邦范围内保持不变</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># R3</span></span><br><span class="line">confederation <span class="built_in">id</span> 345</span><br><span class="line"></span><br><span class="line"><span class="comment"># R4</span></span><br><span class="line">confederation <span class="built_in">id</span> 345</span><br><span class="line">confederation peer-as 64513 <span class="comment"># 联邦IBGP</span></span><br><span class="line">peer 5.5.5.5 ebgp-max-hop 2 <span class="comment"># 联邦EBGP</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># R5</span></span><br><span class="line">confederation <span class="built_in">id</span> 345</span><br><span class="line">confederation peer-as 64512</span><br><span class="line">peer 4.4.4.4 ebgp-max-hop 2</span><br></pre></td></tr></table></figure>
+
+<h2 id="AS间的防环"><a href="#AS间的防环" class="headerlink" title="AS间的防环"></a>AS间的防环</h2><p>通过AS_PATH来实现，如果某台BGP路由器从其外部对等体收到某条路由的AS_PATH中包含有自己的AS号那么该路由器就知道出现了环路，因而丢弃该路由</p>
+<h2 id="BGP路径属性"><a href="#BGP路径属性" class="headerlink" title="BGP路径属性"></a>BGP路径属性</h2><p><strong>公认必遵</strong></p>
+<p>所有BGP路由器都能识别，并且Update报文中必须携带</p>
+<p>如 Origins   AS_Path   Next-hop</p>
+<p><strong>公认自决</strong></p>
+<p>所有的BGP路由器都能识别，但不要求必须包含在Update报文中</p>
+<p>如 Local-Preference   Atomic_Aggregate</p>
+<p><strong>可选属性</strong></p>
+<ul>
+<li>可选传递</li>
+</ul>
+<p>可以不支持但是应该转发给支持的路由 如Community to</p>
+<ul>
+<li>可选非传递</li>
+</ul>
+<p>可以不支持也不转发 如 MED   Originator_ID   Cluster_list   *pre_value</p>
+<ul>
+<li><strong>属性解析</strong>  <strong>Preferred-value 优先值</strong>  华为私有的路径属性，取值范围：0~65535；该值越大，则路由越优先  Preferred-Value只能在路由器本地配置，而且只影响本设备的路由优选。该属性不会传播给任何BGP对等体  路由器本地始发的BGP路由默认的Preferred-Value值为0，从其他BGP对等体学习到的路由默认    Preferred-Value也为0。  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改Preferrred-value</span></span><br><span class="line">peer 5.5.5.5 preferred-value 10</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用route-policy修改Preferred-Value</span></span><br><span class="line">apply preferred-value 10</span><br></pre></td></tr></table></figure>
+  <strong>Local-Preference 本地优先级</strong>   缺省为100，值越大越优  只能传递给IBGP  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改Local_Preference</span></span><br><span class="line">bgp default local-preference 10</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过route-policy修改Local_Preference</span></span><br><span class="line">apply local-preference 200</span><br></pre></td></tr></table></figure>
+  <strong>本地生成的路由</strong>  包括network，import-route，手工汇总和自动汇总引入的路由   aggregate手动汇总路由&gt;summary automatic自动汇总路由&gt;network宣告的路由&gt;import-route重引入的路由&gt;从邻居学习的路由  <strong>AS_PATH</strong>  是一个序列，包含了经过了所有as的编号<ul>
+<li>路由在被通告给EBGP对等体时，路由器会在该路由的AS_Path中追加上本地的AS号</li>
+<li>路由被通告给IBGP对等体时，AS-path不会发生改变</li>
+</ul>
+  <strong>作用</strong>  确保确保路由在EBGP对等体之间传递无环；另外也作为路由优选的衡量标准之一  <strong>类型</strong><ul>
+<li>AS_Sequence</li>
+</ul>
+  一个去往特定目的地所经路径上的有序AS号列表<ul>
+<li>AS_confed_sequence</li>
+</ul>
+  一个去往特定目的地所经路径上的有序AS号列表，此AS列表是本地联邦中的AS<ul>
+<li>AS_Set</li>
+</ul>
+  一个去往特定目的的所经路径上的无序AS号列表<ul>
+<li>AS_confed_set</li>
+</ul>
+  一个去往特定目的的所经路径上的无需AS号列表，此AS列表是本地联邦中的AS  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 通过route-policy修改AS_PATH</span></span><br><span class="line">apply as-path 100 additive</span><br></pre></td></tr></table></figure>
+  <strong>Origin</strong>  标识了路由起源  IGP(network的路由)&gt;EGP(重发布EGP的路由)&gt;Incomplete(import的不完全的路由)  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 通过route-policy修改Origin</span></span><br><span class="line">apply origin incomplete</span><br></pre></td></tr></table></figure>
+  <strong>MED (Multi Exit Discriminator)</strong>  是一种度量值，用于向外部对等体指出进入本AS的首选路径，即当进入本AS的入口有多个时，AS可以使用MED动态地影响其他AS选择进入的路径  MED属性值越小则BGP路由越优  MED主要用于在AS之间影响BGP的选路。MED被传递给EBGP对等体后，对等体在其AS内传递路由时，携带该MED值，但将路由传递给其EBGP对等体时，默认不会携带MED属性  <aside>
+  ⚠️ 如果路由没有MED属性，BGP选路时将该路由的MED值按缺省值0来处理；执行bestroute med-none-as-maximum命令后，BGP选路时将该路由的MED值按最大值4294967295来处理
+  
+  </aside>
+  
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 通过route-policy修改MED</span></span><br><span class="line">apply cost 999</span><br></pre></td></tr></table></figure>
+  <strong>Next_Hop</strong>  指定到达目标网络的下一跳地址  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改BGP路由下一条为自身</span></span><br><span class="line">pper 10.1.12.1 next-hop-local</span><br></pre></td></tr></table></figure>
+  <strong>Community</strong><ul>
+<li>no-advertise  不再传递给其他任何BGPPeer</li>
+<li>no-export  不再传递给其他任何EBGPPeer(联邦EBGP除外)</li>
+<li>no-export-subconfed 不能再传递给其他任何EBGPPeer(包括联邦EBGP)</li>
+</ul>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">	<span class="comment"># 下发缺省路由</span></span><br><span class="line">default-route originate</span><br><span class="line"></span><br><span class="line">default-route-advertise always</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="BGP-路由优选规则"><a href="#BGP-路由优选规则" class="headerlink" title="BGP 路由优选规则"></a>BGP 路由优选规则</h2><ol>
+<li><strong>更大的Preferred-value</strong></li>
+<li><strong>更大的Local-Preference</strong></li>
+<li><strong>起源于本地</strong></li>
+<li><strong>AS_Path更短</strong></li>
+<li><strong>Origin(IGP&gt;EGP&gt;Incomplete)</strong></li>
+<li><strong>MED更小</strong></li>
+<li><strong>EBGP通告的路由</strong></li>
+<li><strong>Next_Hop的IGP度量值更小的路由</strong></li>
+<li>BGP路由负载分担</li>
+<li>Cluster_List更短</li>
+<li>Router-ID更小的BGP对等体发来的路由</li>
+<li>PeerID更小的对等体发来的路由</li>
+</ol>
+<hr>
+<h1 id="RP路由策略和PBR策略路由"><a href="#RP路由策略和PBR策略路由" class="headerlink" title="RP路由策略和PBR策略路由"></a>RP路由策略和PBR策略路由</h1><h2 id="RP和PBR的区别"><a href="#RP和PBR的区别" class="headerlink" title="RP和PBR的区别"></a>RP和PBR的区别</h2><p>RP作用于路由，PBR是在路由存在的基础上作用于数据包</p>
+<h2 id="路由策略"><a href="#路由策略" class="headerlink" title="路由策略"></a>路由策略</h2><p><strong>路由策略是一套用于对路由信息进行过滤、属性设置等操作的方法，通过对路由的控制从而影响数据流量的转发操作</strong></p>
+<h3 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h3><aside>
+⚠️ 作用对象是路由信息,从控制层面实现路由的过滤和属性值的修改
+
+</aside>
+
+<ol>
+<li>控制路由（引入，发布）</li>
+<li>修改路由条目中的属性值</li>
+</ol>
+<h3 id="route-policy"><a href="#route-policy" class="headerlink" title="route-policy"></a>route-policy</h3><blockquote>
+<p>路由策略工具 主要实现路由过滤和路由属性设置等功能 <code>隐含Deny</code></p>
+</blockquote>
+<p><strong>if-match</strong></p>
+<aside>
+⚠️ 若不指定if-match 则所有路由信息都会通过该节点过滤
+
+</aside>
+
+<ul>
+<li>acl</li>
+<li>cost</li>
+<li>interface</li>
+<li>ip ( next-hop | router-source | group-address )</li>
+<li>ip-prefix</li>
+<li>route-type</li>
+<li>tag</li>
+</ul>
+<p><strong>apply</strong></p>
+<aside>
+⚠️ 若不指定if-match 则所有路由信息都会通过该节点过滤
+
+</aside>
+
+<ul>
+<li>cost</li>
+<li>cost-type { type-1 | type-2 }</li>
+<li>ip-address next-hop</li>
+<li>preference</li>
+<li>tag</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">route-policy RP permit node 1</span><br><span class="line">if-match x1</span><br><span class="line">if-match x2</span><br><span class="line">apply y1</span><br></pre></td></tr></table></figure>
+
+<p>只注入172.16.1.0/24,并设置cost = 20</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用ACL2000</span></span><br><span class="line">acl 2000 </span><br><span class="line"><span class="comment"># 只能匹配IP地址 所以在这里 0.0.0.0 &lt;=&gt; 0.0.0.255</span></span><br><span class="line">rule permit <span class="built_in">source</span> 172.16.1.0 0.0.0.0 </span><br><span class="line"></span><br><span class="line">route-policy RP permit node 10 <span class="comment"># 创建route-policy RP  进入节点10</span></span><br><span class="line"><span class="comment"># 调用ACL2000 ACL中隐藏的条目(huawei是permit all) 不会被隐含</span></span><br><span class="line"><span class="comment"># 因此引入后，默认仍是使用</span></span><br><span class="line">ospf中的deny all</span><br><span class="line">if-match acl 2000 </span><br><span class="line">apply cost 20 <span class="comment"># 将路由cost设置为20</span></span><br><span class="line"></span><br><span class="line">ospf 1 </span><br><span class="line">import-route direct route-policy RP <span class="comment"># 路由引用时应用route-policy RP </span></span><br></pre></td></tr></table></figure>
+
+<p>引入路由时保留cost值</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># [R1] </span></span><br><span class="line">ip route-static 10.0.1.0 24 172.16.1.2</span><br><span class="line">ip route-static 10.0.2.0 24 172.16.11.2</span><br><span class="line"></span><br><span class="line">acl 2000</span><br><span class="line"></span><br><span class="line">acl 2001</span><br><span class="line"></span><br><span class="line">route-policy RP permit node 10</span><br><span class="line">if-match acl 2000</span><br><span class="line">apply cost 10</span><br><span class="line"></span><br><span class="line">route-policy RP permit node 20</span><br><span class="line">if-match acl 2001</span><br><span class="line">apply cost 20</span><br><span class="line"></span><br><span class="line"><span class="comment"># [R2] 值相反设置</span></span><br></pre></td></tr></table></figure>
+
+<aside>
+⚠️ 对于同一个Route-Policy节点，命令if-match acl和命令if-match ip-prefix不能同时配置，后配置的命令会覆盖先配置的命令
+
+</aside>
+
+<h3 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h3><aside>
+⚠️ ACL只能匹配路由的目的网路地址，不能匹配到路由的目的网络掩码
+
+</aside>
+
+<h3 id="ip-prefix🌰"><a href="#ip-prefix🌰" class="headerlink" title="ip-prefix🌰"></a>ip-prefix🌰</h3><blockquote>
+<p>前缀列表匹配路由的可控性比ACL高 可匹配路由条目中的网络号及掩码 精确度高。<code>隐含Deny</code></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 路由的网络地址的前22位必须有192.168.4.0前22位相同</span></span><br><span class="line"><span class="comment"># 且目标网络掩码必须大于等于24 greater-equal是大于等于 小于等于是less-equal </span></span><br><span class="line">ip ip-prefix abdc permit 192.168.4.0 22 greater-equal 24</span><br><span class="line"><span class="comment"># 等价于 （隐含了掩码&gt;22）</span></span><br><span class="line">ip ip-prefix abcd index 10 permit 192.168.4.0 22 greater-equal 24</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>例  <img src="Untitled.png" alt="Untitled">  <img src="Untitled%201.png" alt="Untitled">  <img src="Untitled%202.png" alt="Untitled"><hr>
+  <img src="Untitled%203.png" alt="Untitled"></li>
+</ul>
+<h3 id="filter-policy"><a href="#filter-policy" class="headerlink" title="filter-policy"></a>filter-policy</h3><blockquote>
+<p>用于控制路由更新，接受</p>
+</blockquote>
+<ul>
+<li>只能过滤路由信息，无法过滤LSA，不能修改路由属性值</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 命令格式</span></span><br><span class="line">filter-policy &#123; acl-number | acl-name acl-name &#125; import | <span class="built_in">export</span> [ interface-type interface-number ]</span><br><span class="line"></span><br><span class="line">filter-policy gateway ip-prefix-name import | <span class="built_in">export</span></span><br><span class="line"></span><br><span class="line">filter-policy ip-prefix ip-prefix-name [ gateway ip-prefix-name ] import | <span class="built_in">export</span> [ interface-type interface-number ]</span><br><span class="line"></span><br><span class="line"><span class="comment"># RIP 中对路由进行过滤</span></span><br><span class="line">ip ip-prefix 1 deny 192.168.3.0 24</span><br><span class="line">ip ip-prefix 1 permit 0.0.0.0 0 less-equal 32</span><br><span class="line">rip 1</span><br><span class="line">filter-policy ip-prefix 1 <span class="built_in">export</span> GigabitEthernet0/0/1 <span class="comment"># 过滤发布路由</span></span><br><span class="line"></span><br><span class="line">filter-policy ip-prefix 1 import GigabitEthernet0/0/1 <span class="comment"># 过滤接收路由</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># OSPF 中对路由进行过滤</span></span><br><span class="line">ip ip-prefix 1 deny 192.168.3.0 24</span><br><span class="line">ip ip-prefix 1 permit 0.0.0.0 0 less-equal 32</span><br><span class="line">ospf 1</span><br><span class="line">filter-policy ip-prefix 1 import <span class="comment"># 过滤接收路由</span></span><br><span class="line"></span><br><span class="line">import-route direct</span><br><span class="line">filter-policy ip-prefix 1 <span class="built_in">export</span> <span class="comment"># 过滤发布路由</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="策略路由"><a href="#策略路由" class="headerlink" title="策略路由"></a>策略路由</h2><p><strong>操作对象是数据包，在已有路由表的情况下，不按照路由进行转发，而是根据需要，按照某种策略改变数据包的转发路径</strong></p>
+<h3 id="作用-2"><a href="#作用-2" class="headerlink" title="作用"></a>作用</h3><aside>
+⚠️ 作用对象是数据包,从转发层面保证数据包按指定的路径转发
+
+</aside>
+
+<p>改变数据包转发路径</p>
+<h3 id="MQC-Modular-Qos-Command-line-Interface：模块化QoS命令行接口"><a href="#MQC-Modular-Qos-Command-line-Interface：模块化QoS命令行接口" class="headerlink" title="MQC (Modular Qos Command-line Interface：模块化QoS命令行接口)"></a>MQC (Modular Qos Command-line Interface：模块化QoS命令行接口)</h3><p>流分类traffic classifier</p>
+<p>流行为traffic behavior</p>
+<p>流策略traffic policy</p>
+<ol>
+<li>配置流分类，定义报文匹配协议</li>
+<li>配置流行为，确定处理动作</li>
+<li>配置流策略，为流分类绑定流行为</li>
+<li>应用流策略</li>
+</ol>
+<h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><blockquote>
+<p>在某些需要指定特定的数据流走特定的下一跳的场景下 可以使用策略路由实现</p>
+</blockquote>
+<ul>
+<li>例  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 10网段的用户通过高速链路访问外网</span></span><br><span class="line"><span class="comment"># 20网段的用户通过低速链路访问外网</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1 配置ACL规则 </span></span><br><span class="line">[Switch] acl <span class="number">3001</span> <span class="comment"># 高级ACL</span></span><br><span class="line">[Switch-acl-adv-<span class="number">3001</span>] rule permit ip source <span class="number">192.168</span><span class="number">.10</span><span class="number">.0</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.255</span></span><br><span class="line">[Switch] acl <span class="number">3002</span></span><br><span class="line">[Switch-acl-adv-<span class="number">3002</span>] rule permit ip source <span class="number">192.168</span><span class="number">.20</span><span class="number">.0</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.255</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2 配置流分类 </span></span><br><span class="line">[Switch] traffic classifier c1</span><br><span class="line">[Switch-classifier-c1] <span class="keyword">if</span>-match acl <span class="number">3001</span></span><br><span class="line">[Switch] traffic classifier c2</span><br><span class="line">[Switch-classifier-c2] <span class="keyword">if</span>-match acl <span class="number">3002</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3 配置流行为 </span></span><br><span class="line">[Switch] traffic behavior b1</span><br><span class="line">[Switch-behavior-b1] redirect ip-nexthop <span class="number">10.1</span><span class="number">.10</span><span class="number">.1</span></span><br><span class="line">[Switch] traffic behavior b2</span><br><span class="line">[Switch-behavior-b2] redirect ip-nexthop <span class="number">10.1</span><span class="number">.20</span><span class="number">.1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4 配置流策略</span></span><br><span class="line">[Switch] traffic policy p1</span><br><span class="line">[Switch-trafficpolicy-p1] classifier c1 behavior b1</span><br><span class="line">[Switch-trafficpolicy-p1] classifier c2 behavior b2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5 应用流策略</span></span><br><span class="line">[Switch] interface gigabitethernet <span class="number">6</span>/<span class="number">1</span>/<span class="number">10</span></span><br><span class="line">[Switch-GigabitEthernet6/<span class="number">1</span>/<span class="number">10</span>] traffic-policy p1 inbound</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="网络限速"><a href="#网络限速" class="headerlink" title="网络限速"></a>网络限速</h3><ul>
+<li>基于IP网段限速</li>
+</ul>
+<p>可以实现多种   限速，比如基于VLAN的限速 、基于IP网段的限速等。<br>适用于需要对流量类型进行区分以保证某些应用得到充足带宽的场景。</p>
+<ul>
+<li>基于端口限速</li>
+</ul>
+<p>按照限速的方向，分为入方向的接口限速和出方向的接口限速。<br>适用于流量种类较单一或不需要对流量类型进行区分，但是网络带宽有限需要对流量限速的场景。</p>
+<ul>
+<li>基于Vlan限速</li>
+</ul>
+<hr>
+<h1 id="汇总"><a href="#汇总" class="headerlink" title="汇总"></a>汇总</h1><p>将多个子网络汇总成一个大的主网络，也就是说在这个主网络中包括了多个子网络。</p>
+<h2 id="不同路由的默认优先级"><a href="#不同路由的默认优先级" class="headerlink" title="不同路由的默认优先级"></a>不同路由的默认优先级</h2><table>
+<thead>
+<tr>
+<th>路由协议或路由种类</th>
+<th>华为默认优先级</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DIRECT</td>
+<td>0</td>
+</tr>
+<tr>
+<td>OSPF</td>
+<td>10</td>
+</tr>
+<tr>
+<td>IS-IS</td>
+<td>15</td>
+</tr>
+<tr>
+<td>STATIC</td>
+<td>60</td>
+</tr>
+<tr>
+<td>RIP</td>
+<td>100</td>
+</tr>
+<tr>
+<td>OSPF ASE</td>
+<td>150</td>
+</tr>
+<tr>
+<td>OSPF NSSA</td>
+<td>150</td>
+</tr>
+<tr>
+<td>IBGP</td>
+<td>255</td>
+</tr>
+<tr>
+<td>EBGP</td>
+<td>255</td>
+</tr>
+</tbody></table>
+<h2 id="汇总原因"><a href="#汇总原因" class="headerlink" title="汇总原因"></a>汇总原因</h2><p>不进行路由汇总会产生的问题：</p>
+<p>1 路由表体积太大，消耗内存资源，影响查表速度<br>2 硬件资源不足，当路由条目太多并且需要检索时会消耗很多资源</p>
+<h2 id="如何汇总"><a href="#如何汇总" class="headerlink" title="如何汇总"></a>如何汇总</h2><h1 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h1><p>是一个网络安全设备</p>
+<h2 id="相关"><a href="#相关" class="headerlink" title="相关"></a>相关</h2><p>IPS 入侵检测服务</p>
+<p>IDS 入侵防御服务</p>
+<p>WAF Web应用防火墙</p>
+<h2 id="作用-3"><a href="#作用-3" class="headerlink" title="作用"></a>作用</h2><p>通过配置，进行访问控制并保护网络安全</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>访问控制，身份验证，数据加密，VPN</p>
+<h2 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h2><ol>
+<li>1代每次连接都要查表 太慢了</li>
+<li>代理防火墙 对每一个服务提供代理，成本高且升级困难</li>
+<li>状态检测防火墙 只对一串包的第一个包进行监测</li>
+<li>统一威胁管理防火墙 多了各种防护功能</li>
+<li>下一代防火墙 多更多功能</li>
+</ol>
+<h2 id="分类——基于业务"><a href="#分类——基于业务" class="headerlink" title="分类——基于业务"></a>分类——基于业务</h2><ul>
+<li>FW 内外(边界)防火墙</li>
+<li>WAF防火墙 Web应用防火墙 (一般在DMZ隔离区)</li>
+<li>VFW 虚拟防火墙</li>
+<li>Anti-DDos 反DDoS防火墙</li>
+</ul>
+<h2 id="分类——基于软硬件"><a href="#分类——基于软硬件" class="headerlink" title="分类——基于软硬件"></a>分类——基于软硬件</h2><ul>
+<li>硬件防火墙</li>
+<li>软件防火墙</li>
+<li>芯片级防火墙(特殊系统中才应用)</li>
+</ul>
+<h2 id="防火墙的安全区域"><a href="#防火墙的安全区域" class="headerlink" title="防火墙的安全区域"></a>防火墙的安全区域</h2><p>同一区域的数据报文不使用安全策略，只有跨区域传输才使用</p>
+<p>华为默认区域：</p>
+<ul>
+<li>本地区域 代表防火墙本身 安全级别100 (可信度最高</li>
+<li>信任区域 一般用于定义内部网络 安全级别85</li>
+<li>非信任区域 一般用于定义非内部网络或互联网 安全级别5 (可信度最低</li>
+<li>隔离区域 一般用于定义内部服务器所在网络 安全级别 50</li>
+</ul>
+<aside>
+👗 本地区域不能添加任何接口，但防火墙所有接口依然属于系统预留本地区域
+
+</aside>
+
+<p>数据流动：</p>
+<ul>
+<li>入方向(inbound): 从低安全级别区域到高安全级别区域</li>
+<li>出方向(outbound): 从高安全级别区域到低安全级别级别区域</li>
+</ul>
+<aside>
+⚠️ 一个接口(可以是物理接口，也可以是逻辑接口)只能加入一个安全区域
+
+</aside>
+
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ul>
+<li>防外不防内</li>
+<li>无法防止全部安全威胁，特别是新型威胁</li>
+<li>在提供深度检测与处理转发之间的性能平衡问题</li>
+<li>使用p2p加密协议(如VPN)时，无法处理加密隧道</li>
+</ul>
+<h1 id="eNSP命令"><a href="#eNSP命令" class="headerlink" title="eNSP命令"></a>eNSP命令</h1><h2 id="display"><a href="#display" class="headerlink" title="display"></a>display</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 显示所有端口状态</span></span><br><span class="line">display interface brief</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示bgp路由表</span></span><br><span class="line">display bgp routing-table</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询流分类配置信息</span></span><br><span class="line">display traffic classifier user-defined c1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询流策略配置信息</span></span><br><span class="line">display traffic policy user-defined p1</span><br></pre></td></tr></table></figure>
+
+<h2 id="interface"><a href="#interface" class="headerlink" title="interface"></a>interface</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置回环接口</span></span><br><span class="line">interface loopback 1</span><br><span class="line"><span class="comment">## 接口号 1~1024</span></span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Learning Network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/07/02/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+</search>
