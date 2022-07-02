@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+
+
+<html lang="cn">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="Elimos" />
+       
+      <meta name="description" content="嗷嗷这里是Elimos的小站" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>PixelBook 2017 安装FydeOS记录 |  Elimos&#39;Home</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-PixelBook 2017 安装FydeOS记录"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  PixelBook 2017 安装FydeOS记录
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/04/24/PixelBook%202017%20%E5%AE%89%E8%A3%85FydeOS%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2022-04-24T04:54:12.000Z" itemprop="datePublished">2022-04-24</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tutorial/">Tutorial</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">2.2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">7 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>Author: Elimos<br>Date Created: March 24, 2022 12:54 PM<br>Reference: <a target="_blank" rel="noopener" href="http://120.79.199.53/?p=24">http://120.79.199.53/?p=24</a><br>Status: Done 🙌<br>Tags: ChromeOS, Chromebook, Devices, Tutorial</p>
+<aside>
+📎 **目录**
+
+</aside>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h2 id="声明！"><a href="#声明！" class="headerlink" title="声明！"></a>声明！</h2><aside>
+🔥 折腾有风险，本教程不对任何可能存在的设备损坏负责！
+
+</aside>
+
+<p>本文引用到了<a target="_blank" rel="noopener" href="http://120.79.199.53/">chromebook研究院</a>ELAO的<a target="_blank" rel="noopener" href="http://120.79.199.53/?p=24">文章</a>,未经准许,禁止转载!</p>
+<p>感谢ELAO大佬提供的教程和技术支持!</p>
+<p><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F41fc58dd-a514-4042-bbf9-d041d6478ce6%2FUntitled.png?table=block&id=c18e5437-c3ab-437f-801c-9057b2c368b3&spaceId=a06190ac-c5a8-4c56-b3ed-a0be13119ca5&width=2000&userId=9d2af0ed-9fc9-4b46-840a-8a61cda676c0&cache=v2" alt="转载声明"></p>
+<p>转载声明</p>
+<h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>Pixelbook2017是一款由Google于2017年推出的一款搭载Chrome OS的360°折叠笔记本。</p>
+<p>机身带有两个Type-C 接口，一个3.5mm音频I/O。</p>
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>由于某些不可描述的原因，Chrome OS并不能很好地在国内使用，因为，尝试将设备刷入<a target="_blank" rel="noopener" href="http://fydeos.com/">FydeOS</a>系统，以在国内获取优秀的使用体验。</p>
+<p>在此感谢FydeOS团队为ChromeOS本国化做出的巨大贡献。</p>
+<h1 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h1><h2 id="设备准备"><a href="#设备准备" class="headerlink" title="设备准备"></a>设备准备</h2><p>我们需要有一台PixelBook 2017      <del>废话！不然折腾啥？</del></p>
+<h3 id="线材"><a href="#线材" class="headerlink" title="线材"></a>线材</h3><p>除了设备之外，我们还需要一些线：</p>
+<ul>
+<li>USB Type-A 母 to Type-C 公</li>
+</ul>
+<blockquote>
+<p>这个是为了让U盘能连接到笔记本上 毕竟这个本子不自带USB Type-A接口，当然如果你有Type-C的U盘的话，这一项可以省略</p>
+</blockquote>
+<ul>
+<li>Type-C 公 to Type-C 公 <strong>OR</strong> Type-A 公 to Type-C 公</li>
+</ul>
+<blockquote>
+<p>这个是为了能让笔记本断开电池的时候能够接电源，就用你的充电器+充电线就可以了</p>
+</blockquote>
+<h3 id="设备"><a href="#设备" class="headerlink" title="设备"></a>设备</h3><p>除了线之外，还需要一些基础设备：</p>
+<ul>
+<li>充电器 OR 充电头</li>
+</ul>
+<aside>
+⚠️ 注意：供电功率一定要至少大于20W！
+
+</aside>
+
+<ul>
+<li>U盘 <strong>OR</strong> 任意可移动媒体存储设备</li>
+</ul>
+<blockquote>
+<p>这个是用来存放系统镜像用的</p>
+</blockquote>
+<ul>
+<li>六角螺丝刀 T1</li>
+<li>六角螺丝刀 T2</li>
+</ul>
+<blockquote>
+<p>这个螺丝刀真的是苛刻，跑了好久才找人找到有合适的螺丝刀，不是十字螺丝就算了，还要两种型号的螺丝！</p>
+</blockquote>
+<ul>
+<li>[ 可选 ]电吹风</li>
+<li>[ 可选 ]双面胶</li>
+<li>[ 可选 ]存放螺丝的容器</li>
+<li>[ 可选 ]锤子</li>
+</ul>
+<blockquote>
+<p>用来锤平顶部金属条</p>
+</blockquote>
+<h2 id="软体准备"><a href="#软体准备" class="headerlink" title="软体准备"></a>软体准备</h2><p>我们需要一台电脑，这里使用的是Windows11的设备</p>
+<h3 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h3><aside>
+⏰ Fydeos的FAQ
+
+</aside>
+
+<p><a target="_blank" rel="noopener" href="https://fydeos.com/help/faq">常见问题 - FydeOS</a></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://fydeos.com/download">FydeOS的系统镜像</a></li>
+</ul>
+<blockquote>
+<p>当然，你还可以选择Windows,Linux各大发行版等，这里就不一一列举了</p>
+</blockquote>
+<blockquote>
+<p>下载下来放到自己找得到的地方就可以了</p>
+</blockquote>
+<h3 id="固件"><a href="#固件" class="headerlink" title="固件"></a>固件</h3><ul>
+<li>seaBIOS</li>
+</ul>
+<blockquote>
+<p>这里使用的是ChromeBook研究院的bios下载脚本部署的，不需要事先准备，查看<a target="_blank" rel="noopener" href="https://mrchromebox.tech/#devices">BIOS支持列表</a></p>
+</blockquote>
+<h3 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/pbatard/rufus/releases/">Rufus</a>(github)</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rufus.en.softonic.com/?ex=CAT-3508.2">Rufus</a>(softonic分流)</p>
+</li>
+</ul>
+<blockquote>
+<p>用来给U盘写入镜像，github的链接可以下载最新版，分流方便不方便的同学</p>
+</blockquote>
+<ul>
+<li>[ 可选 ]<a target="_blank" rel="noopener" href="https://www.diskgenius.cn/download.php">DiskGenius</a></li>
+</ul>
+<blockquote>
+<p>磁盘分区工具 不一定需要</p>
+</blockquote>
+<h1 id="正式开始"><a href="#正式开始" class="headerlink" title="正式开始"></a>正式开始</h1><h2 id="开启开发者模式"><a href="#开启开发者模式" class="headerlink" title="开启开发者模式"></a>开启开发者模式</h2><p>此栏参考了</p>
+<p><a target="_blank" rel="noopener" href="http://120.79.199.53/?p=24">Chromebook装win10教程 - chromebook研究院</a></p>
+<p>想要更详细的信息请移步！</p>
+<blockquote>
+<p><strong>Chromebook</strong>：关机状态下，按住ESC+刷新（在ESC右边，一般是旋转图标）+电源键（2017在侧面音量键那一面最底下）</p>
+</blockquote>
+<p>开机后会进入这个界面</p>
+<p><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fdba5935c-484e-4f79-b168-7f8f7147548a%2FUntitled.png?table=block&id=eb11dc72-4807-448d-9912-03ee346b9043&spaceId=a06190ac-c5a8-4c56-b3ed-a0be13119ca5&width=2000&userId=9d2af0ed-9fc9-4b46-840a-8a61cda676c0&cache=v2" alt="开启开发者模式界面"></p>
+<p>开启开发者模式界面</p>
+<blockquote>
+<p>方向键左右可以切换语言</p>
+</blockquote>
+<blockquote>
+<p>按关机或按ESC则可以当作以上一切都没发生过，退出开启开发者模式的界面</p>
+</blockquote>
+<p>按ENTER开启开发者模式</p>
+<aside>
+⚠️ 注意：请做好备份
+
+</aside>
+
+<p>此时机器会自己完成接下来的工作，我们只需要等待它进入系统</p>
+<p><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F459579da-318c-4db4-ace8-e63c5fac3c7e%2FUntitled.png?table=block&id=0b29ecc1-9840-4cd7-b701-8a19ebfb3f78&spaceId=a06190ac-c5a8-4c56-b3ed-a0be13119ca5&width=2000&userId=9d2af0ed-9fc9-4b46-840a-8a61cda676c0&cache=v2" alt="开启开发者模式中"></p>
+<p>开启开发者模式中</p>
+<p><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F6bbcf321-b2bf-4d05-944a-b4652329a3e3%2FUntitled.png?table=block&id=34bafa84-6135-43bd-8962-9d00bb2dc4cf&spaceId=a06190ac-c5a8-4c56-b3ed-a0be13119ca5&width=2000&userId=9d2af0ed-9fc9-4b46-840a-8a61cda676c0&cache=v2" alt="开启开发者模式后开机"></p>
+<p>开启开发者模式后开机</p>
+<p>此时按Ctrl+D可以跳过这个界面，正式进入系统</p>
+<blockquote>
+<p>如果手贱按了空格就会重新关闭掉开发者模式</p>
+</blockquote>
+<h2 id="解除写保护"><a href="#解除写保护" class="headerlink" title="解除写保护"></a>解除写保护</h2><p>本栏同样参考此文章，详情可移步！</p>
+<p><a target="_blank" rel="noopener" href="http://120.79.199.53/?p=24">Chromebook装win10教程 - chromebook研究院</a></p>
+<ul>
+<li>方法一：解除CR50保护锁</li>
+</ul>
+<p>拆机拔掉电池排线，然后插上我们事先准备好的电源和电源线，在电池排线与主板脱离的情况下开机</p>
+<h3 id="拆机教程"><a href="#拆机教程" class="headerlink" title="拆机教程"></a>拆机教程</h3><aside>
+⚠️ 拆机有风险！拔电源线的时候请千万谨慎小心！
+
+</aside>
+
+<p>螺丝分布图</p>
+<p><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fc2d31aeb-09cc-4f81-a3c3-b43443ecc85f%2FUntitled.png?table=block&id=355769d2-2089-43e7-bad3-cdcd78cecd40&spaceId=a06190ac-c5a8-4c56-b3ed-a0be13119ca5&width=2000&userId=9d2af0ed-9fc9-4b46-840a-8a61cda676c0&cache=v2" alt="Untitled"></p>
+<p>使用电吹风加热胶条,大约5~10分钟后使用起胶硬片插入,让胶条与机器分离</p>
+<blockquote>
+<p>是真没想到中间这么多螺丝!!!!!</p>
+</blockquote>
+<p><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ff7c20487-af9f-4a9d-a07c-aaed513f13ec%2F7706a809170b8df9.jpg?table=block&id=6602d748-29eb-4146-b751-b173bcedec15&spaceId=a06190ac-c5a8-4c56-b3ed-a0be13119ca5&width=2000&userId=9d2af0ed-9fc9-4b46-840a-8a61cda676c0&cache=v2" alt="内部图"></p>
+<p>内部图</p>
+<p>正中间黄色那颗小螺丝就是固定电源排线(连接到拆下来的后盖那里的那一条线就是电源排线)的螺丝,<strong>注意不要扯断电源排线!!!</strong></p>
+<p>拧下螺丝后就可以拆卸下电源线,此时写保护暂时解除了.</p>
+<p>方法二：使用<a target="_blank" rel="noopener" href="https://wiki.mrchromebox.tech/Firmware_Write_Protect#Hardware_Write_Protection">ccd线解锁</a></p>
+<h2 id="刷入BIOS"><a href="#刷入BIOS" class="headerlink" title="刷入BIOS"></a>刷入BIOS</h2><p>进入系统后，按Ctrl+Alt+T可以进入命令行界面，输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell</span><br></pre></td></tr></table></figure>
+
+<p>后回车，进入shell视图后输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span>;curl -LO [https://gitee.com/elao/mr-chromebox-scripts/raw/dev/firmware-util.sh](https://gitee.com/elao/mr-chromebox-scripts/raw/dev/firmware-util.sh) &amp;&amp; sudo bash [firmware-util.sh](http://firmware-util.sh/)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>取自：<a target="_blank" rel="noopener" href="http://120.79.199.53/?p=357">BIOS脚本镜像脚本</a></p>
+</blockquote>
+<p>回车。</p>
+<p>进入类似界面</p>
+<p><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F2bad1687-e56b-4d8e-9916-e5d62e6597dd%2FUntitled.png?table=block&id=e7b4a5f8-0c2c-406b-9746-d24b17b26c55&spaceId=a06190ac-c5a8-4c56-b3ed-a0be13119ca5&width=2000&userId=9d2af0ed-9fc9-4b46-840a-8a61cda676c0&cache=v2" alt="Fireware Script"></p>
+<p>按照中文提示，查看FW_WP那一栏的提示，如果显示禁用，则代表写保护已经成功解除，如果显示启用，则请重新走解除写保护的教程，或自行查阅更详细的资料。</p>
+<p>成功解除写保护后，输入install/update Full ROM Firmware(安装/更新完整固件)前的数字，</p>
+<p>如图中的3</p>
+<p>输入后回车</p>
+<p>按照提示输入Y ，I ACCEPT 后进入备份BIOS界面，如果不想备份的话可以在提示是否备份处输入N后回车，若是需要备份BIOS的话，请插入一个U盘。</p>
+<p>结束备份后，会进入下载界面，此时等待即可，刷入完成后会显示绿色的 SUCCESS 或者 成功 ，若是红色的失败或者FAILED则请检查上述步骤或者自行查阅更详细的资料。</p>
+<p>安装成功后按回车即可回到主界面</p>
+<h2 id="制作U盘启动盘"><a href="#制作U盘启动盘" class="headerlink" title="制作U盘启动盘"></a>制作U盘启动盘</h2><aside>
+⚠️ 注意：此操作会清除储存设备中的所有数据！请做好备份！
+
+</aside>
+
+<p>使用Rufus</p>
+<p><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F844778cf-c208-40a6-8f88-dd90190cbb39%2F_IGXWM_M8IG2_0O.jpg?table=block&id=a71285e6-aed3-4227-bb77-29cf721fac33&spaceId=a06190ac-c5a8-4c56-b3ed-a0be13119ca5&width=2000&userId=9d2af0ed-9fc9-4b46-840a-8a61cda676c0&cache=v2" alt="rufus界面"></p>
+<p>rufus界面</p>
+<p>由上往下看，在<strong>Device</strong>的位置下选择想要作为启动盘的可移动储存设备</p>
+<blockquote>
+<p>可以通过看卷标来区分是不是你的U盘，如你的U盘卷标是H：盘，那就在这里面选择H盘</p>
+</blockquote>
+<p>在 <strong>Boot selection</strong> 中下按<strong>SELECT</strong>来选择事先准备好的Fydeos镜像文件,文件格式是img</p>
+<p>在 <strong>Parition scheme</strong> 中选择GPT</p>
+<p>在<strong>File System</strong> 中选择 fat32</p>
+<p>然后按最底下的<strong>START</strong></p>
+<p>等待几分钟后就完成啦</p>
+<h2 id="刷入系统"><a href="#刷入系统" class="headerlink" title="刷入系统"></a>刷入系统</h2><p>打开刷好BIOS的chromebook 开机会显示兔子图，此时下面会显示按<strong>ESC</strong>进入引导菜单，进入后选择USB boot 选择你的U盘对应的选择，进入fydeos的安装系统，桌面内有一键安装，按照提示一路NEXT即可。</p>
+<h1 id="踩坑记录"><a href="#踩坑记录" class="headerlink" title="踩坑记录"></a>踩坑记录</h1><h2 id="拆机阶段"><a href="#拆机阶段" class="headerlink" title="拆机阶段"></a>拆机阶段</h2><ul>
+<li>没有螺丝刀，去修理店里面只有大一型号的，其他小的都拆不下</li>
+<li>去了学校里面的雷锋家电，他们搜了七八个螺丝刀组才找到匹配的螺丝刀</li>
+<li>这个背板真是太难拆了，拆开背板之前以为只有边缘有螺丝，发现还是拆不下之后，只能用热吹风处理双面胶，用硬胶片切开双面胶，才能拆开背板胶，然后才发现中间竟然有十颗螺丝！！！</li>
+<li>拆开来发现和旧的chromebook不同，没有找到写保护螺丝。在询问了ELAO大佬后才得知2017是使用CR50进行写保护的，于是才有了以上的教程中去除写保护的步骤，一开始我以为是断电失效的，拆了之后又装回去了，回头才发现是要保持拆卸状态，接电源进行BIOS刷写。</li>
+<li>发现石墨导热纸底下是没有螺丝的！！！ 我轻轻撕了下来才发现这个秘密</li>
+<li>第一次见到了薄膜键盘的结构，确实就是一层薄膜</li>
+<li>这款笔记本的电池真是结构非常独特了</li>
+</ul>
+<p><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F6fc75a1d-c08f-462c-9558-54d4b67078b8%2F613e7780fdff397.jpg?table=block&id=b2015efb-38a7-471d-bd50-b79f827d02e9&spaceId=a06190ac-c5a8-4c56-b3ed-a0be13119ca5&width=2000&userId=9d2af0ed-9fc9-4b46-840a-8a61cda676c0&cache=v2" alt="电池背板结构"></p>
+<p>电池背板结构</p>
+<h2 id="刷写阶段"><a href="#刷写阶段" class="headerlink" title="刷写阶段"></a>刷写阶段</h2><ul>
+<li><p>本子的Type-C没办法读出USB设备，但是可以正常充电，在海鲜市场咨询过可能是USB电源管理击穿</p>
+</li>
+<li><p>启动盘制作的过程中下载了iCloud提供的.xz版本的镜像，发现输入后分区有误，重下img.xz版重刷之</p>
+</li>
+<li><p>因为读取不了USB 在备份阶段也备份不了 在这个位置输入N取消备份</p>
+<p>  <img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ff92f3b92-337d-4a7c-863b-6d0c6f9c0174%2F-2d2e56aca575c03.jpg?table=block&id=57b9a97d-6c24-4511-bc0d-990c16cd51fe&spaceId=a06190ac-c5a8-4c56-b3ed-a0be13119ca5&width=2000&userId=9d2af0ed-9fc9-4b46-840a-8a61cda676c0&cache=v2" alt="U盘备份"></p>
+</li>
+<li><p>之前使用的是FydeOS的教程，教程用例是2013版的，镜像脚本不是我的版本的，导致BIOS下载后校验失败。最后重新找到通用脚本成功刷入</p>
+<p>  <img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fccd88a44-151f-41e1-bde4-e411939f29d1%2F770c03f352223123.jpg?table=block&id=15540337-d6ba-4b00-bc31-e3cf5065c0d5&spaceId=a06190ac-c5a8-4c56-b3ed-a0be13119ca5&width=2000&userId=9d2af0ed-9fc9-4b46-840a-8a61cda676c0&cache=v2" alt="刷入失败"></p>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://elimos.cn/2022/04/24/PixelBook%202017%20%E5%AE%89%E8%A3%85FydeOS%E8%AE%B0%E5%BD%95/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FydeOS/" rel="tag">FydeOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chromebook/" rel="tag">chromebook</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2022/05/09/Fydeos%20%E9%85%8D%E7%BD%AEFlutter%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Fydeos 配置Flutter开发环境
+          
+        </div>
+      </a>
+    
+    
+  </nav>
+
+  
+   
+    
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2022
+        <i class="ri-heart-fill heart_icon"></i> Elimos
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Elimos&#39;Home"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/MathJax.js"></script>
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/config/TeX-AMS-MML_HTMLorMML-full.js"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>
