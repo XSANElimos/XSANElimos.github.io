@@ -9,9 +9,10 @@
 <p>是对各种事实和现象进行观察，分类，归纳，演绎，分析，推测，计算和实验，从而发现规律，并对各自定量规律予以验证和公式化的知识体系</p>
 <h2 id="网络工程定义"><a href="#网络工程定义" class="headerlink" title="网络工程定义"></a>网络工程定义</h2><ol>
 <li>将系统化的，规范的，可度量的方法应用于网络系统结构设计与实现、网络系统规划与集成、网络管理与维护、网络安全保障和网络应用开发的过程</li>
-<li>对1中所述方法的研究</li>
+<li>对1中所述方法的研究<span id="more"></span>
+<h2 id="系统集成"><a href="#系统集成" class="headerlink" title="系统集成"></a>系统集成</h2></li>
 </ol>
-<h2 id="系统集成"><a href="#系统集成" class="headerlink" title="系统集成"></a>系统集成</h2><h3 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h3><p>系统是指为实现某一目标而应用的一组元素的有机结合，而系统本身又可以作为一个元素单位(或称子系统或组件)参与多次组合，这种组合过程可概括为系统集成。系统集成是目前常用的一种实现复杂系统的工程方法。</p>
+<h3 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h3><p>系统是指为实现某一目标而应用的一组元素的有机结合，而系统本身又可以作为一个元素单位(或称子系统或组件)参与多次组合，这种组合过程可概括为系统集成。系统集成是目前常用的一种实现复杂系统的工程方法。</p>
 <aside>
 📖 既是一种重要的工程建设思想，也是一种解决问题的方法论
 
@@ -492,6 +493,7 @@
 
 <h2 id="网络测试的基本概念"><a href="#网络测试的基本概念" class="headerlink" title="网络测试的基本概念"></a>网络测试的基本概念</h2><pre><code>   网络测试是指以科学的方法，通过测量手段/工具，取得网络产品或正在运行网络的性能参数和服务质量参数，这些参数包括可用性、差错率、吞吐量、时延、丢包率、连接建立时间、故障检测和改正时间等。
 </code></pre>
+<span id="more"></span>
 <h2 id="典型的网络测试方法"><a href="#典型的网络测试方法" class="headerlink" title="典型的网络测试方法"></a>典型的网络测试方法</h2><ol>
 <li>使用测试设备单独对网络设备进行测试 即单品测试，这种测试多用于再网络设备的研发阶段对设备的质量进行保障</li>
 <li>将网络设备放在具体网络环境中进行测试，以评估该设备的互通性及互操作性，这种在真实环境下的测试常见于运营商、企业网中</li>
@@ -1888,7 +1890,8 @@
     <title>Hello World</title>
     <url>/2022/07/02/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><span id="more"></span>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
@@ -1909,9 +1912,9 @@
 <p><a href="https://flutter.cn/docs/get-started/install/linux">在 Linux 操作系统上安装和配置 Flutter 开发环境</a></p>
 <h1 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h1><h2 id="FydeOS开启Linux环境"><a href="#FydeOS开启Linux环境" class="headerlink" title="FydeOS开启Linux环境"></a>FydeOS开启Linux环境</h2><p>FydeOS使用的是基于Debian的Linux环境</p>
 <ol>
-<li>打开”系统设置-在左侧菜单栏-高级-开发者”中找到Linux开发环境 按照提示开启即可</li>
+<li>打开”系统设置-在左侧菜单栏-高级-开发者”中找到Linux开发环境 按照提示开启即可<span id="more"></span>
+<img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F47522da1-052e-4c26-b20b-51e90ae69c17%2FUntitled.png?table=block&id=1becba06-7fdf-4e7e-84d1-17dc8b41a6f1&spaceId=a06190ac-c5a8-4c56-b3ed-a0be13119ca5&width=2000&userId=9d2af0ed-9fc9-4b46-840a-8a61cda676c0&cache=v2" alt="成功开启linux开发环境后界面"></li>
 </ol>
-<p><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F47522da1-052e-4c26-b20b-51e90ae69c17%2FUntitled.png?table=block&id=1becba06-7fdf-4e7e-84d1-17dc8b41a6f1&spaceId=a06190ac-c5a8-4c56-b3ed-a0be13119ca5&width=2000&userId=9d2af0ed-9fc9-4b46-840a-8a61cda676c0&cache=v2" alt="成功开启linux开发环境后界面"></p>
 <p>成功开启linux开发环境后界面</p>
 <ol>
 <li>点开右侧小三角</li>
@@ -2013,8 +2016,9 @@
 🔥 折腾有风险，本教程不对任何可能存在的设备损坏负责！
 
 </aside>
+<span id="more"></span>
+本文引用到了[chromebook研究院](http://120.79.199.53/)ELAO的[文章](http://120.79.199.53/?p=24),未经准许,禁止转载!
 
-<p>本文引用到了<a href="http://120.79.199.53/">chromebook研究院</a>ELAO的<a href="http://120.79.199.53/?p=24">文章</a>,未经准许,禁止转载!</p>
 <p>感谢ELAO大佬提供的教程和技术支持!</p>
 <p><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F41fc58dd-a514-4042-bbf9-d041d6478ce6%2FUntitled.png?table=block&id=c18e5437-c3ab-437f-801c-9057b2c368b3&spaceId=a06190ac-c5a8-4c56-b3ed-a0be13119ca5&width=2000&userId=9d2af0ed-9fc9-4b46-840a-8a61cda676c0&cache=v2" alt="转载声明"></p>
 <p>转载声明</p>
