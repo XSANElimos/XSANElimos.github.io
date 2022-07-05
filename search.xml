@@ -1,6 +1,722 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>C语言基础——从入门到入墙</title>
+    <url>/2022/07/05/C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%A2%99/</url>
+    <content><![CDATA[<h1 id="C语言"><a href="#C语言" class="headerlink" title="C语言"></a>C语言</h1><p>C语言作为一切学习的起点，要多回来复习复习哟</p>
+<span id="more"></span>
+<h1 id="计算机基础"><a href="#计算机基础" class="headerlink" title="计算机基础"></a>计算机基础</h1><h2 id="计算机存储单位-从小到大"><a href="#计算机存储单位-从小到大" class="headerlink" title="计算机存储单位(从小到大)"></a>计算机存储单位(从小到大)</h2><p>1bit（比特位）= 1位二进制(0或1)</p>
+<p>1B（Byte字节）=8bit</p>
+<p>1KB (Kilobyte 千字节)=1024B，</p>
+<p>1MB (Mega byte 兆字节 简称“兆”)=1024KB，</p>
+<p>1GB（Giga byte 吉字节 又称“千兆”)=1024MB，</p>
+<p>1TB（Tera byte 万亿字节 太字节)=1024GB，其中1024=2^10 ( 2 的10次方)，</p>
+<p>1PB（Peta byte 千万亿字节 拍字节）=1024TB，</p>
+<p>1EB（Exa byte 百亿亿字节 艾字节）=1024PB，</p>
+<p>1ZB (Zetta byte 十万亿亿字节 泽字节)= 1024 EB,</p>
+<p>1YB (Yotta byte 一亿亿亿字节 尧字节)= 1024 ZB,</p>
+<p>1BB (Bronto byte 一千亿亿亿字节)= 1024 YB</p>
+<p>1NB(Nona byte )= 1024BB</p>
+<p>1DB(Dogga byte)= 1024NB</p>
+<h2 id="进制之间的转换，进制加减法-UnDone"><a href="#进制之间的转换，进制加减法-UnDone" class="headerlink" title="进制之间的转换，进制加减法[!UnDone]"></a>进制之间的转换，进制加减法[!UnDone]</h2><ul>
+<li>短除法</li>
+</ul>
+<hr>
+<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>辅助别人看懂你的代码</p>
+<h2 id="两种注释类型"><a href="#两种注释类型" class="headerlink" title="两种注释类型"></a>两种注释类型</h2><h3 id="单行注释"><a href="#单行注释" class="headerlink" title="单行注释"></a>单行注释</h3><ul>
+<li>一次只可以注释掉一行代码，注释的代码是不参与编译的</li>
+<li>用//表示单行注释</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这是一个行注释</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="块注释"><a href="#块注释" class="headerlink" title="块注释"></a>块注释</h3><ul>
+<li>一次注释掉多行</li>
+<li>用/<em>CONTENT</em>/表示块注释</li>
+<li>块注释不可以嵌套块注释使用</li>
+<li>块注释里面可以嵌套使用行注释</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">这是一个块注释</span></span><br><span class="line"><span class="comment">// 这是一个块注释中嵌套的行注释</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">*/</span> <span class="comment">//这样使得后面的那一个*/失效</span></span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><ul>
+<li>用来存储数据</li>
+<li>变量实际上就是一块可以用来存储可变(类型可变，内容可变)的值的一块内存区域</li>
+</ul>
+<h2 id="定义-definition-和声明-declaration-变量"><a href="#定义-definition-和声明-declaration-变量" class="headerlink" title="定义(definition)和声明(declaration)变量"></a>定义(definition)和声明(declaration)变量</h2><h3 id="定义声明"><a href="#定义声明" class="headerlink" title="定义声明"></a>定义声明</h3><p><strong><code>[变量类型] &#123;变量名&#125;</code></strong></p>
+<p>会分配内存的声明，有几种写法</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义声明演示</span></span><br><span class="line"><span class="type">short</span> a;    <span class="comment">//定义一个short类型的变量,变量名为a,但是该变量没有初始化赋值</span></span><br><span class="line"></span><br><span class="line"><span class="type">short</span> a=<span class="number">89</span>; <span class="comment">//定义变量a，立马初始化为89</span></span><br><span class="line"></span><br><span class="line"><span class="type">short</span> a;    <span class="comment">//定义变量a</span></span><br><span class="line">a=<span class="number">78</span>;       <span class="comment">//在使用之前初始化为78</span></span><br><span class="line"></span><br><span class="line"><span class="type">short</span> a,b,c,d;  <span class="comment">//同时定义了四个变量,都是short类型,都没有初始化赋值</span></span><br><span class="line"></span><br><span class="line"><span class="type">short</span> a,b=<span class="number">89</span>,c,d=<span class="number">56</span>; <span class="comment">// 同时定义了四个short类型变量，部分变量初始化</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="普通声明"><a href="#普通声明" class="headerlink" title="普通声明"></a>普通声明</h3><p><strong><code>extern [变量类型] &#123;变量名&#125;</code></strong></p>
+<p>仅声明，不会分配内存 如<code>extern int a[];</code></p>
+<h3 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h3><ul>
+<li><strong>变量名只能由字母，数字和下划线组成，不能包含其它特殊符号</strong></li>
+<li><strong>变量名不可以跟C语言的关键字同名</strong></li>
+<li><strong>首字符不可以是数字</strong></li>
+<li>变量取名字通俗易懂，不要用拼音，用英文单词(行业潜规则)</li>
+<li>大驼峰法：类名，函数名(通用)，属性名，命名空间</li>
+<li>小驼峰：变量，函数名(Java系)</li>
+</ul>
+<hr>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h2><table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>类型名</th>
+<th>占用字节(Byte)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>short</td>
+<td>短整型</td>
+<td>2</td>
+</tr>
+<tr>
+<td>int</td>
+<td>整型</td>
+<td>4</td>
+</tr>
+<tr>
+<td>long</td>
+<td>长整型</td>
+<td>8(x64) / 4(x32)</td>
+</tr>
+<tr>
+<td>long long</td>
+<td>长长整型</td>
+<td>8</td>
+</tr>
+<tr>
+<td>unsigned short</td>
+<td>无符号的短整型</td>
+<td>2</td>
+</tr>
+<tr>
+<td>unsigned int</td>
+<td>无符号的整型</td>
+<td>4</td>
+</tr>
+<tr>
+<td>unsigned long</td>
+<td>无符号的长整型</td>
+<td>8(x64) / 4(x32)</td>
+</tr>
+<tr>
+<td>unsigned long long</td>
+<td>无符号的长长整型</td>
+<td>8</td>
+</tr>
+</tbody></table>
+<h2 id="整数在计算机中的存储方式"><a href="#整数在计算机中的存储方式" class="headerlink" title="整数在计算机中的存储方式"></a>整数在计算机中的存储方式</h2><p>最高位是符号位，用0表示正数，用1表示负数</p>
+<ul>
+<li>正数：在计算机中采用原码存储的</li>
+<li>负数：在计算机中采用补码存储的</li>
+<li>原码：指的是一个数原本的二进制</li>
+<li>反码：原码全部取反</li>
+<li>补码：反码加1得到补码</li>
+</ul>
+<h2 id="字符"><a href="#字符" class="headerlink" title="字符"></a>字符</h2><p>char类型表示字符，单引号表示单个字符</p>
+<blockquote>
+<p>char可以用ASCII码以整数的形式进行输出，这是因为键盘上的每一个字符都在ascii表中</p>
+</blockquote>
+<p>常用的ASCII码：</p>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>ASCII码值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A</td>
+<td>65</td>
+</tr>
+<tr>
+<td>a</td>
+<td>97</td>
+</tr>
+<tr>
+<td>‘0’</td>
+<td>48</td>
+</tr>
+</tbody></table>
+<ul>
+<li>查看ASCII码表:<code>man ascii</code>  <img src="C%E8%AF%AD%E8%A8%80%20b18e6a4bf4e04023bb351dabeaa07422/Untitled.png" alt="Untitled">  <img src="C%E8%AF%AD%E8%A8%80%20b18e6a4bf4e04023bb351dabeaa07422/Untitled%201.png" alt="Untitled"></li>
+</ul>
+<p><strong>char字符越界</strong></p>
+<p>char类型数据本身占8位二进制，数据超出范围以后，计算机会把高位的去掉，保留低位</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 字符数据越界演示</span></span><br><span class="line"><span class="type">char</span> a=<span class="number">300</span>;      <span class="comment">// 字符数据越界</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,a);  <span class="comment">// 结果:44</span></span><br><span class="line"></span><br><span class="line"><span class="type">char</span> a=<span class="number">417</span>;      <span class="comment">// 字符数据越界</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,a);  <span class="comment">// 结果:-95</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h2><p>当计算机接收到一个浮点数常量时，计算机默认其数据类型为double</p>
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>类型名</th>
+<th>占用字节(Bte)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>float</td>
+<td>单精度浮点型</td>
+<td>4</td>
+</tr>
+<tr>
+<td>double</td>
+<td>双精度浮点型</td>
+<td>8</td>
+</tr>
+</tbody></table>
+<h3 id="浮点数在计算机中的存储方式"><a href="#浮点数在计算机中的存储方式" class="headerlink" title="浮点数在计算机中的存储方式"></a>浮点数在计算机中的存储方式</h3><ol>
+<li>先求出整数部分的二进制(除2取余)</li>
+<li>再来求出小数部分的二进制(乘2取整)</li>
+<li>规格化存储</li>
+</ol>
+<blockquote>
+<p>有些小数是无法精准表示：如12.56<br>有些小数是可以精准表示：如12.5</p>
+</blockquote>
+<h2 id="指针类型-UnDone"><a href="#指针类型-UnDone" class="headerlink" title="指针类型[!UnDone]"></a>指针类型[!UnDone]</h2><blockquote>
+<p>在不同的处理器中指针长度不一，但在相同处理器中所有类型的指针长度都是一致的</p>
+</blockquote>
+<h2 id="BOOL类型"><a href="#BOOL类型" class="headerlink" title="BOOL类型"></a>BOOL类型</h2><blockquote>
+<p>在C99 中引入了_Bool类型 如果要使用bool的<code>true</code>与<code>false</code>, 则需要<code>#include &lt;stdbool.h&gt;</code></p>
+</blockquote>
+<ul>
+<li>只要不是0，全部都是真(TRUE)的</li>
+<li>只要是0，就是假(FALSE)的</li>
+</ul>
+<h2 id="复合数据类型-UnDone"><a href="#复合数据类型-UnDone" class="headerlink" title="复合数据类型[!UnDone]"></a>复合数据类型[!UnDone]</h2><h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><h3 id="共用体"><a href="#共用体" class="headerlink" title="共用体"></a>共用体</h3><h2 id="数据表示方式"><a href="#数据表示方式" class="headerlink" title="数据表示方式"></a>数据表示方式</h2><h3 id="格式控制符"><a href="#格式控制符" class="headerlink" title="格式控制符"></a>格式控制符</h3><table>
+<thead>
+<tr>
+<th>格式控制符</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%d</td>
+<td>打印有符号整数的十进制</td>
+</tr>
+<tr>
+<td>%i</td>
+<td>输出:打印整数十进制      输入:接收八、十六进制</td>
+</tr>
+<tr>
+<td>%ld</td>
+<td>打印长整型</td>
+</tr>
+<tr>
+<td>%lld</td>
+<td>打印长整型</td>
+</tr>
+<tr>
+<td>%hd</td>
+<td>打印短整型</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>打印字符的字面值</td>
+</tr>
+<tr>
+<td>%u</td>
+<td>把整数当成无符号数来计算然后打印</td>
+</tr>
+<tr>
+<td>%lu</td>
+<td>打印无符号长整型</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>打印整数的十六进制</td>
+</tr>
+<tr>
+<td>%#X</td>
+<td>打印带0x的大写十六进制</td>
+</tr>
+<tr>
+<td>%o</td>
+<td>打印八进制</td>
+</tr>
+<tr>
+<td>%#o</td>
+<td>打印带0的八进制</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>打印字符串</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>打印地址值(首地址)，打印指针</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>打印float (%.3f 保留小数点后3位)</td>
+</tr>
+<tr>
+<td>%lf</td>
+<td>打印double</td>
+</tr>
+</tbody></table>
+<h3 id="位宽"><a href="#位宽" class="headerlink" title="位宽"></a>位宽</h3><p>打印输出变量值的时候，可以设置打印的位宽(打印出来的变量占用的位置宽度)</p>
+<ul>
+<li>正数位宽：在数据的左边补充空格，凑够你需要的位宽</li>
+<li>负数位宽：在数据的右边补充空格，凑够你需要的位宽</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 位宽演示</span></span><br><span class="line"><span class="type">int</span> num = <span class="number">404</span>;  </span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%-10d%d&quot;</span>,num,num); <span class="comment">//404       404 </span></span><br><span class="line"><span class="comment">// 中间间隔7个空格</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%2d&quot;</span>,num); <span class="comment">//404</span></span><br><span class="line"><span class="comment">// 设置2个位宽，位宽设置小了不起任何作用</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="小数位数"><a href="#小数位数" class="headerlink" title="小数位数"></a>小数位数</h3><ul>
+<li>%f，%lf打印小数，默认是保留小数点后面6个有效数字</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 小数位数演示</span></span><br><span class="line">%<span class="number">-15.9f</span>   <span class="number">15</span>表示<span class="number">15</span>个位宽，<span class="number">9</span>表示小数点后面保留<span class="number">9</span>个数字</span><br></pre></td></tr></table></figure>
+
+<h3 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h3><p>用<code>\</code>把一些特殊的字符转变含义</p>
+<ul>
+<li>\181  \7A  把8进制或16进制数转换成10进制</li>
+<li>\x 把十六进制数转为十进制</li>
+</ul>
+<h3 id="进制表示-UnDone"><a href="#进制表示-UnDone" class="headerlink" title="进制表示[!UnDone]"></a>进制表示[!UnDone]</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 进制表示</span></span><br><span class="line"><span class="type">int</span> b = <span class="number">4&#x27;b</span>0111;  <span class="comment">//二进制</span></span><br><span class="line"><span class="type">int</span> n = <span class="number">123</span>;     <span class="comment">//十进制</span></span><br><span class="line"><span class="type">int</span> m = <span class="number">0123</span>;    <span class="comment">//八进制</span></span><br><span class="line"><span class="type">int</span> k = <span class="number">0x123</span>;   <span class="comment">//十六进制</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="格式化输入输出"><a href="#格式化输入输出" class="headerlink" title="格式化输入输出"></a>格式化输入输出</h1><h2 id="输入SCANF"><a href="#输入SCANF" class="headerlink" title="输入SCANF"></a>输入SCANF</h2><p><strong><code>scanf(&quot;格式控制符&quot;,变量的地址);</code></strong></p>
+<p>scanf只会严格按照格式控制符进行读取，从键盘上读取到的输入会进入到缓冲区中，然后根据格式化控制符从IO缓冲区中读取合适的字符串后转换成对应的数据类型</p>
+<p><code>int getchar(void)</code></p>
+<ul>
+<li>从缓冲区中一次读取一个字符</li>
+<li>返回从缓冲区中读取到的字符的ASCII码值</li>
+</ul>
+<h2 id="输出PRINTF"><a href="#输出PRINTF" class="headerlink" title="输出PRINTF"></a>输出PRINTF</h2><p><strong><code>printf(&quot;格式控制符&quot;,变量的名字);</code></strong></p>
+<p>printf会把存放在IO缓冲区中的内容在屏幕上显示出来，有三种情况会自动刷新缓冲区（即输出缓冲区内容）</p>
+<ol>
+<li>return/exit/程序结束</li>
+<li>缓冲区满</li>
+<li>\n</li>
+</ol>
+<hr>
+<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><h2 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h2><p><code>**+</code>  算术加**</p>
+<p><code>**-</code>  算术减**</p>
+<p><code>***</code>  算术乘**</p>
+<p><code>**/</code>  算术除**</p>
+<p><code>**%</code>  算术余(只能对整数求余)**</p>
+<h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><p><code>**||</code> 逻辑或**</p>
+<blockquote>
+<p>可以理解为算术加 只要有1个1即为1</p>
+</blockquote>
+<ul>
+<li>运算规则:从左到右依次判断每个表达式的值是否为真，如果有一个表达式为真，后面的表达式不参与计算，整个表达式全部为真</li>
+</ul>
+<p><code>**&amp;&amp;</code> 逻辑与**</p>
+<blockquote>
+<p>可以理解位算术乘 只要有1个0即为0</p>
+</blockquote>
+<ul>
+<li>运算规则:从左到右依次判断每个表达式的值是否为真，如果有一个表达式为假，后面的表达式不参与计算，整个表达式全部为假</li>
+</ul>
+<p><code>**!</code>  逻辑反**</p>
+<blockquote>
+<p>取反 有1变0 有0变1</p>
+</blockquote>
+<h3 id="逻辑运算符混合运算"><a href="#逻辑运算符混合运算" class="headerlink" title="逻辑运算符混合运算"></a>逻辑运算符混合运算</h3><blockquote>
+<p>由于&amp;&amp;优先级高，所以先用括号把&amp;&amp;括起来作为一个整体，其它部分(其它部门都是逻辑或)按照从左到右</p>
+</blockquote>
+<ul>
+<li>条件1||条件2&amp;&amp;条件3||条件4</li>
+</ul>
+<p>例如：if((a&gt;b)||(a=a+10)&amp;&amp;(b=b-a)||(a-b&lt;3))<br>整体看成逻辑或，从左到右计算，中间的条件2和条件3看成整体</p>
+<ul>
+<li>条件1&amp;&amp;条件2||条件3||条件4</li>
+</ul>
+<p>例如：if((a&gt;b)&amp;&amp;(a=a+10)||(b=b-a)||(a-b&lt;3))<br>整体看成逻辑或，从左到右计算，前面的条件1和条件2看成整体</p>
+<ul>
+<li>条件1||条件2||条件3&amp;&amp;条件4</li>
+</ul>
+<p>if((a&gt;b)||(a=a+10)||(b=b-a)&amp;&amp;(a-b&lt;3))</p>
+<h2 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h2><p><code>**&gt;**</code>   <strong>关系大于</strong></p>
+<p><code>**&lt;</code>   关系小于**</p>
+<p><code>**==</code>  关系等于**</p>
+<p><code>**!=</code>  关系不等**</p>
+<p><code>**&gt;=</code>  关系大于等于**</p>
+<p><code>**&lt;=</code>  关系小于等于**</p>
+<h2 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h2><p><code>=</code> <strong>赋值运算符</strong></p>
+<h3 id="左值"><a href="#左值" class="headerlink" title="左值"></a>左值</h3><p>赋值运算左边的那个式子，就叫做左值</p>
+<ul>
+<li>左值只能是变量名，不可以是表达式，不可以是常量</li>
+</ul>
+<h3 id="右值"><a href="#右值" class="headerlink" title="右值"></a>右值</h3><p>赋值运算右边的那个式子，叫做右值</p>
+<ul>
+<li>右值可以是任何合法的C语言表达式</li>
+</ul>
+<h2 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h2><p><code>**~</code> 按位逻辑取反**</p>
+<blockquote>
+<p>有1则0 有0则1</p>
+</blockquote>
+<p><code>**&amp;</code> 按位逻辑与**</p>
+<blockquote>
+<p>全1则1 有0则0</p>
+</blockquote>
+<ul>
+<li>任何二进制跟1按位与，结果保持不变</li>
+<li>任何二进制跟0按位与，结果一定是0</li>
+</ul>
+<p><code>**|**</code> <strong>按位逻辑或</strong></p>
+<blockquote>
+<p>有1则1 全0则0</p>
+</blockquote>
+<ul>
+<li>任何二进制跟0按位或，结果保持不变</li>
+<li>任何二进制跟1按位或，结果一定是1</li>
+</ul>
+<p><code>**^**</code> <strong>按位逻辑异或</strong></p>
+<blockquote>
+<p>异则1 同则0</p>
+</blockquote>
+<ul>
+<li>任何一个数跟自己异或，结果是0</li>
+<li>任何一个数跟1异或，结果是把这个数最低的二进制反转</li>
+<li>任何一个数跟0异或，结果保持不变</li>
+</ul>
+<blockquote>
+<p>求异或后取反可以表示<code>逻辑同或</code></p>
+</blockquote>
+<h2 id="三目运算符"><a href="#三目运算符" class="headerlink" title="三目运算符"></a>三目运算符</h2><p><code>? :</code> </p>
+<blockquote>
+<p>表达式1?表达式2:表达式3</p>
+</blockquote>
+<ul>
+<li>表达式1为真返回表达式2</li>
+<li>表达式1为假返回表达式3</li>
+</ul>
+<h2 id="其它运算符-UnDone"><a href="#其它运算符-UnDone" class="headerlink" title="其它运算符[!UnDone]"></a>其它运算符[!UnDone]</h2><p><code>**++</code> 自增**</p>
+<p>前置自增</p>
+<blockquote>
+<p><code>++a;</code>先把a的值加1，然后使用加1之后的结果</p>
+</blockquote>
+<p>后置自增</p>
+<blockquote>
+<p><code>a++;</code>，先使用a原本的值，然后再把a加1</p>
+</blockquote>
+<p><code>**--</code> 自减**</p>
+<p>前置自减</p>
+<blockquote>
+<p><code>--a;</code>先把a的值减1，然后使用减1之后的结果</p>
+</blockquote>
+<p>后置自减</p>
+<blockquote>
+<p><code>a--;</code>，先使用a原本的值，然后再把a减1</p>
+</blockquote>
+<p><code>**,</code>  逗号表达式**</p>
+<p><code>变量=(表达式1,表达式2,表达式3...);</code></p>
+<blockquote>
+<p>从左到右计算，最后的结果由最右边的表达式来决定</p>
+</blockquote>
+<p><code>**+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>%=</code> <code>&lt;&lt;=</code> <code>&gt;&gt;=</code> <code>&amp;=</code> <code>|=</code> <code>^=</code> 组合运算符**</p>
+<blockquote>
+<p><code>a += b;</code> 等价于 <code>a = a + b;</code></p>
+</blockquote>
+<p><code>**sizeof</code> 取变量类型大小**</p>
+<blockquote>
+<p>sizeof括号内的表达式不会执行，sizeof只会去取表达式结果的类型</p>
+</blockquote>
+<ul>
+<li>如<code>sizeof(i++);</code>执行后i值不变</li>
+</ul>
+<p><code>**&lt;&lt;</code> 左移**</p>
+<blockquote>
+<p>把一个整数的二进制向左边移动若干位(舍弃高位)，低位补0</p>
+</blockquote>
+<p><code>**&gt;&gt;</code> 右移**</p>
+<blockquote>
+<p>不同的操作系统采用不同的右移方式</p>
+</blockquote>
+<ul>
+<li>逻辑右移:把一个整数的二进制向右边移动若干位(舍弃低位),高位补0</li>
+<li>算术右移:把一个整数的二进制向右边移动若干位(舍弃低位),高位补符号位的拷贝</li>
+</ul>
+<p><code>**.</code> <code>-&gt;</code> 成员运算符**</p>
+<p><code>**&amp;</code> 取地址** </p>
+<p><code>***</code> 解引用**</p>
+<h2 id="运算符的优先级-UnDone"><a href="#运算符的优先级-UnDone" class="headerlink" title="运算符的优先级[!UnDone]"></a>运算符的优先级[!UnDone]</h2><hr>
+<h1 id="程序控制关键字"><a href="#程序控制关键字" class="headerlink" title="程序控制关键字"></a>程序控制关键字</h1><h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><blockquote>
+<p>循环内的变量都属于静态局部变量，循环外不可使用，循环内的定义不会导致重复定义</p>
+</blockquote>
+<h3 id="FOR循环"><a href="#FOR循环" class="headerlink" title="FOR循环"></a>FOR循环</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(表达式<span class="number">1</span>; 表达式<span class="number">2</span>; 表达式<span class="number">3</span>) <span class="comment">// 循环控制 表达式分别都可以省略</span></span><br><span class="line">&#123;</span><br><span class="line">		<span class="comment">// 循环体代码块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>先执行表达式1</li>
+<li>再判断表达式2是否成立</li>
+</ol>
+<ul>
+<li>表达式2成立：执行花括号里面的代码，然后执行表达式3，继续判断表达式2</li>
+<li>表达式2不成立：结束循环</li>
+</ul>
+<h3 id="WHILE循环"><a href="#WHILE循环" class="headerlink" title="WHILE循环"></a>WHILE循环</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>(条件表达式)  <span class="comment">//循环控制</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="comment">// 循环体代码块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>条件为真，则执行循环，循环完成一轮后重新判断条件是否成立，若为假退出循环</li>
+</ul>
+<h3 id="DOWHILE循环"><a href="#DOWHILE循环" class="headerlink" title="DOWHILE循环"></a>DOWHILE循环</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">do</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="comment">// 循环体代码块</span></span><br><span class="line">&#125;<span class="keyword">while</span>(条件表达式);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>循环一定会至少执行一次</li>
+<li>条件为真，则继续执行循环，循环完成一轮后重新判断条件是否成立，若为假退出循环</li>
+</ul>
+<h3 id="循环控制关键字"><a href="#循环控制关键字" class="headerlink" title="循环控制关键字"></a>循环控制关键字</h3><ul>
+<li><code>break</code>   提前彻底结束循环</li>
+<li><code>continue</code>  结束本次循环，继续后面的循环</li>
+</ul>
+<h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><h3 id="if-else-if-else多分支"><a href="#if-else-if-else多分支" class="headerlink" title="if-else if-else多分支"></a>if-else if-else多分支</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(条件判断式)&#123;</span><br><span class="line">		<span class="comment">//分支1</span></span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(条件判断式<span class="number">2</span>)&#123;</span><br><span class="line">		<span class="comment">//分支2</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="comment">//分支3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>分支只有的一句话的时候可以省略花括号</li>
+<li>else永远和距离最近的if配对</li>
+<li>关键字与花括号之间不能有除空格或回车以外的其他字符</li>
+</ul>
+<h3 id="选择分支"><a href="#选择分支" class="headerlink" title="选择分支"></a>选择分支</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">switch</span>(变量)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">         <span class="comment">// 分支1</span></span><br><span class="line">         <span class="keyword">break</span>;     <span class="comment">// 结束case语句</span></span><br><span class="line">   <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">         <span class="comment">// 分支2  继续往下执行</span></span><br><span class="line">   <span class="keyword">default</span>: <span class="comment">// 不符合case列举除的情况则执行</span></span><br><span class="line">         <span class="comment">// 分支3</span></span><br><span class="line">         <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>switch-case中的变量，只能是整数，字符，枚举这些类型</li>
+<li>default与break都是可选项，default可以随意调整位置</li>
+<li>case中的分支可以用花括号包裹，如果在case中定义新变量则必须使用花括号包裹</li>
+</ul>
+<h3 id="三目分支"><a href="#三目分支" class="headerlink" title="?:三目分支"></a>?:三目分支</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">条件判断式 ? 分支<span class="number">1</span> : 分支<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="跳转分支"><a href="#跳转分支" class="headerlink" title="跳转分支"></a>跳转分支</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">LabelName:</span><br><span class="line">	<span class="comment">// 语句</span></span><br><span class="line">	<span class="keyword">goto</span> LabelName; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>标签下不可以定义新的变量(重复定义)</li>
+<li>goto只能在同一个函数内部跳转</li>
+</ul>
+<hr>
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><p>当需要保存一定数量的相同类型的数据时，就需要用到数组</p>
+<blockquote>
+<p>任何合法的C语言类型，都可以定义成数组</p>
+</blockquote>
+<h2 id="数组定义"><a href="#数组定义" class="headerlink" title="数组定义"></a>数组定义</h2><p><strong><code>[数据类型] &#123;数组名&#125;[数组元素个数]</code></strong></p>
+<blockquote>
+<p>数组名字出现在表达式中，本身就是一个指针</p>
+</blockquote>
+<h2 id="数组初始化以及赋值"><a href="#数组初始化以及赋值" class="headerlink" title="数组初始化以及赋值"></a>数组初始化以及赋值</h2><ul>
+<li><strong>完全初始化</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">5</span>]=&#123;<span class="number">45</span>,<span class="number">85</span>,<span class="number">74</span>,<span class="number">96</span>,<span class="number">63</span>&#125;;  </span><br><span class="line"><span class="type">char</span> b[<span class="number">10</span>]=<span class="string">&quot;hello&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>部分初始化</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">5</span>]=&#123;<span class="number">45</span>,<span class="number">25</span>&#125;;              </span><br><span class="line"><span class="type">char</span> b[<span class="number">10</span>]=&#123;<span class="string">&#x27;h&#x27;</span>,<span class="string">&#x27;e&#x27;</span>,<span class="string">&#x27;l&#x27;</span>,<span class="string">&#x27;l&#x27;</span>,<span class="string">&#x27;o&#x27;</span>&#125;; <span class="comment">// &#x27;h&#x27; 表示单个字符</span></span><br><span class="line"><span class="type">char</span> s[<span class="number">20</span>]=&#123;<span class="string">&#x27;h&#x27;</span>,<span class="string">&#x27;h&#x27;</span>,<span class="number">0</span>&#125;  <span class="comment">// \0的ASCII码就是0 &#123;0&#125;即等价于&#123;’\0’&#125; </span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>其它没有初始化的都是0</p>
+</blockquote>
+<ul>
+<li><strong>自适应长度初始化</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a[]=&#123;<span class="number">85</span>,<span class="number">96</span>&#125;;      </span><br><span class="line"><span class="type">char</span> b[]=<span class="string">&quot;world&quot;</span> <span class="comment">// &quot;world&quot; 表示字符串 多个字符</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>只能在定义数组的时候立马初始化才可行</p>
+</blockquote>
+<ul>
+<li><strong>延迟赋值</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">3</span>];    <span class="comment">//定义了数组，但是没有初始化</span></span><br><span class="line">a[<span class="number">0</span>]=<span class="number">45</span>;     <span class="comment">//正确</span></span><br><span class="line">a[<span class="number">1</span>]=<span class="number">85</span>;     <span class="comment">//正确</span></span><br><span class="line">a[<span class="number">3</span>]=<span class="number">88</span>;     <span class="comment">//数组越界</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>分块初始化</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> b[<span class="number">100</span>] = &#123;[<span class="number">0</span> ... <span class="number">49</span>]=<span class="number">100</span>, [<span class="number">50</span> ... <span class="number">99</span>]=<span class="number">200</span>&#125;; </span><br><span class="line"><span class="comment">//把数组前面50个元素初始化为100，后面50个初始化为200</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>...</code> 左右两边必须要有空格</p>
+</blockquote>
+<h2 id="数组访问"><a href="#数组访问" class="headerlink" title="数组访问"></a>数组访问</h2><p>通过下表来对数组进行读或写</p>
+<h3 id="数组重复写入"><a href="#数组重复写入" class="headerlink" title="数组重复写入"></a>数组重复写入</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">char</span> buf[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,buf);  </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// buf的值 (0表示\0)</span></span><br><span class="line"><span class="comment">// abcdefg0 </span></span><br><span class="line"><span class="comment">// hijk0fg0</span></span><br><span class="line"><span class="comment">// lm0k0fg0</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>假如第一次输入的字符串长一点，下一次输入的字符串短一点，scanf都会自动帮你在字符串后面添加\0保存到buf中，短一点的字符串覆盖长字符串的前面部分，并且有个\0在后面(易忽略)</p>
+</blockquote>
+<h3 id="数组清空"><a href="#数组清空" class="headerlink" title="数组清空"></a>数组清空</h3><blockquote>
+<p>若是在使用前不对数组进行清空，则有可能会有残留的不确定的值还存留在数组涵盖的范围内(如上所示)，导致程序运行时产生不确定的结果</p>
+</blockquote>
+<ul>
+<li><code>void bzero(void *s, size_t n);</code></li>
+</ul>
+<p>s:数组名 n:数组大小</p>
+<ul>
+<li>初始化时利用 <code>int buf[10]=&#123;0&#125;;</code></li>
+</ul>
+<p>利用部分初始化把数组清零,-其它没有初始化的默认都是0</p>
+<h3 id="数组越界"><a href="#数组越界" class="headerlink" title="数组越界"></a>数组越界</h3><p>数组的下标范围是从0到数组的长度-1，若是访问的时候下标不在该范围内，就会出现数组越界，有可能会导致段错误(Segmentation fault)，越界也分为往前越界和往后越界</p>
+<h3 id="段错误"><a href="#段错误" class="headerlink" title="段错误"></a>段错误</h3><p>由于程序员在代码中访问了非法地址导致的(经常见于指针没有初始化，数组越界)</p>
+<h3 id="数组怪异的写法"><a href="#数组怪异的写法" class="headerlink" title="数组怪异的写法"></a>数组怪异的写法</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> buf[<span class="number">10</span>];</span><br><span class="line"><span class="number">0</span>[buf]=<span class="number">11</span>; <span class="comment">//等价于buf[0]=11; </span></span><br></pre></td></tr></table></figure>
+
+<h2 id="数组存储"><a href="#数组存储" class="headerlink" title="数组存储"></a>数组存储</h2><p>数组在计算机中是连续存储(数组元素的地址是紧挨着的)</p>
+<h3 id="字符串存储"><a href="#字符串存储" class="headerlink" title="字符串存储"></a>字符串存储</h3><p>字符串默认有一个结束标记\0(ASCII码值就是0)</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">char</span> buf1[<span class="number">10</span>]=<span class="string">&quot;hello&quot;</span>; <span class="comment">//会自动在字符串的末尾添加\0</span></span><br><span class="line"><span class="type">char</span> buf2[<span class="number">5</span>]=<span class="string">&quot;hello&quot;</span>; <span class="comment">//没有空位自动添加\0</span></span><br><span class="line"><span class="type">char</span> buf[]=&#123;<span class="string">&#x27;h&#x27;</span>,<span class="string">&#x27;e&#x27;</span>,<span class="string">&#x27;l&#x27;</span>,<span class="string">&#x27;l&#x27;</span>,<span class="string">&#x27;o&#x27;</span>&#125;; <span class="comment">// 属于字符数组存储 sizeof结果为5,没有加\0</span></span><br><span class="line"><span class="type">char</span> buf[]=<span class="string">&quot;hello&quot;</span>  <span class="comment">// 属于字符串存储 sizeof结果为6，加上了\0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="一维数组大小"><a href="#一维数组大小" class="headerlink" title="一维数组大小"></a>一维数组大小</h2><p><code>sizeof();</code></p>
+<blockquote>
+<p>求任何类型数据的大小的<strong>运算符</strong>，若是计算字符串的长度，则会算上\0</p>
+</blockquote>
+<p><code>size_t strlen(const char *s);</code></p>
+<blockquote>
+<p>专门(只能)用来求字符串的实际长度的<strong>函数</strong>，使用时需要导入<code>#include &lt;string.h&gt;</code></p>
+</blockquote>
+<p>返回值：字符串的实际长度(不包括\0)  s:要计算长度的字符串<br>原理：计算字符串实际长度，遇到\0认为字符串结束了</p>
+<blockquote>
+<p>%s打印字符串的时候，也是遇到\0就认为字符串结束了</p>
+</blockquote>
+<hr>
+<h1 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h1><p>用二维的方式存放大量相同类型的数据</p>
+<h2 id="二维数组定义"><a href="#二维数组定义" class="headerlink" title="二维数组定义"></a>二维数组定义</h2><p><code>**[数据类型**] **&#123;数组名&#125;[行数][列数]**</code></p>
+<p>任何合法的C语言类型，都可以定义成二维数组</p>
+<h2 id="二维数组初始化和赋值"><a href="#二维数组初始化和赋值" class="headerlink" title="二维数组初始化和赋值"></a>二维数组初始化和赋值</h2><ul>
+<li><strong>部分初始化</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">5</span>][<span class="number">6</span>]=&#123;<span class="number">45</span>,<span class="number">78</span>,<span class="number">96</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>其它没有初始化的默认全部都是0</p>
+</blockquote>
+<ul>
+<li><strong>自适应行数初始化</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a[][<span class="number">6</span>]=&#123;<span class="number">89</span>,<span class="number">9</span>&#125;;                   <span class="comment">//正确</span></span><br><span class="line"><span class="type">char</span> b[][<span class="number">10</span>]=&#123;<span class="string">&quot;hello&quot;</span>,<span class="string">&quot;world&quot;</span>,<span class="string">&quot;gec&quot;</span>&#125;;<span class="comment">//正确</span></span><br><span class="line"><span class="type">int</span> a[][]=&#123;<span class="number">89</span>,<span class="number">9</span>&#125;;                    <span class="comment">//错误</span></span><br><span class="line"><span class="type">int</span> a[<span class="number">5</span>][]=&#123;<span class="number">89</span>,<span class="number">9</span>&#125;;                   <span class="comment">//错误</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>不能自适应行列数是因为编译器无法正确确定行列排布方式，具有二义性</p>
+</blockquote>
+<ul>
+<li><strong>分组初始化</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">char</span> b[<span class="number">3</span>][<span class="number">10</span>]=&#123;&#123;<span class="string">&#x27;h&#x27;</span>,<span class="string">&#x27;e&#x27;</span>,<span class="string">&#x27;l&#x27;</span>,<span class="string">&#x27;l&#x27;</span>,<span class="string">&#x27;o&#x27;</span>&#125;,&#123;<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;e&#x27;</span>,<span class="string">&#x27;c&#x27;</span>&#125;&#125;   <span class="comment">//正确</span></span><br><span class="line"><span class="type">int</span> a[<span class="number">5</span>][<span class="number">6</span>]=&#123;&#123;<span class="number">5</span>&#125;,<span class="number">8</span>,<span class="number">9</span>,&#123;<span class="number">89</span>,<span class="number">63</span>&#125;&#125;;                        <span class="comment">//错误</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>要求从左到右连续分组，中间不要间断</p>
+</blockquote>
+<ul>
+<li><strong>单独初始化</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//分别赋值</span></span><br><span class="line"><span class="type">int</span> a[<span class="number">5</span>][<span class="number">6</span>];  </span><br><span class="line">a[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">99</span>;</span><br><span class="line">a[<span class="number">1</span>][<span class="number">2</span>]=<span class="number">67</span>;</span><br><span class="line"><span class="type">char</span> b[<span class="number">3</span>][<span class="number">10</span>];</span><br><span class="line">b[<span class="number">0</span>][<span class="number">1</span>]=<span class="string">&#x27;h&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="二维数组的访问"><a href="#二维数组的访问" class="headerlink" title="二维数组的访问"></a>二维数组的访问</h2><p>行和列的下标：都是从0开始,注意越界问题</p>
+<h2 id="二维数组的存储"><a href="#二维数组的存储" class="headerlink" title="二维数组的存储"></a>二维数组的存储</h2><p>二维数组在计算机中是连续存储(数组元素的地址是紧挨着的)</p>
+<blockquote>
+<p>可以把它看作是特殊的”一维数组”<br>可以把二维数组拆分成多个一维数组</p>
+</blockquote>
+<h2 id="二维数组占用空间大小"><a href="#二维数组占用空间大小" class="headerlink" title="二维数组占用空间大小"></a>二维数组占用空间大小</h2><p>依据初始化列表中值的个数 (行下标为空的情况下)，确定有几行,再通过 <strong>行<em>列</em>sizeof(类型)</strong> 确定大小</p>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><p>字符串的本质就是<code>**char 字符串名[字符串长度]</code>** </p>
+<p>各类字符串的操作函数都需要先引入<code>#include &lt;string.h&gt;</code></p>
+<h2 id="复制、拷贝字符串"><a href="#复制、拷贝字符串" class="headerlink" title="复制、拷贝字符串"></a>复制、拷贝字符串</h2><p><code>char *strcpy(char *dest, const char *src);</code></p>
+<blockquote>
+<p>把src中的字符串拷贝一份到dest里</p>
+</blockquote>
+<ul>
+<li>strcpy拷贝字符串会自动在后面加上\0(特别是src比dest要短的情况下)</li>
+</ul>
+<p><code>char *strncpy(char *dest, const char *src, size_t n);</code></p>
+<blockquote>
+<p>把src中的字符串拷贝一份到dest里面，拷贝n个字节</p>
+</blockquote>
+<ul>
+<li>strncpy拷贝字符串的时候不会自动添加\0</li>
+</ul>
+<h2 id="字符串的比较"><a href="#字符串的比较" class="headerlink" title="字符串的比较"></a>字符串的比较</h2><blockquote>
+<p>比较标准：按照两个字符串中字符的ASCII码排列顺序来比较</p>
+</blockquote>
+<p><code>int strcmp(const char *s1, const char *s2);</code></p>
+<ul>
+<li>参数：s1 s2就是你要比较的两个字符串</li>
+</ul>
+<p>返回值：</p>
+<ul>
+<li>s1大于s2  返回值&gt;0</li>
+<li>s1小于s2  返回值&lt;0</li>
+<li>s1等于s2  返回0</li>
+</ul>
+<p><code>int strncmp(const char *s1, const char *s2, size_t n);</code></p>
+<ul>
+<li>参数：比较s1和s2的最前面的n个字符是否相同</li>
+</ul>
+<h2 id="字符串合并，拼接"><a href="#字符串合并，拼接" class="headerlink" title="字符串合并，拼接"></a>字符串合并，拼接</h2><p><code>char *strcat(char *dest, const char *src);</code></p>
+<ul>
+<li>参数：把src合并到dest中，合并的结果存放到dest中</li>
+</ul>
+<p><code>char *strncat(char *dest, const char *src, size_t n);</code></p>
+<blockquote>
+<p>注意：dest总的大小必须要超过dest字符串+src字符串之和</p>
+</blockquote>
+<p><code>int sprintf(char *str, const char *format, ...);</code></p>
+<ul>
+<li>参数：str：保存拼接之后的字符串 format：格式控制字符串</li>
+</ul>
+<h2 id="字符串的切割"><a href="#字符串的切割" class="headerlink" title="字符串的切割"></a>字符串的切割</h2><p><code>char *strtok(char *str, const char *delim);</code></p>
+<blockquote>
+<p>底层原理:strtok会改变原始字符串，strtok会把原始字符串中遇到的切割符号替换成\0</p>
+</blockquote>
+<blockquote>
+<p>第一次使用的时候str填原始字符串 之后使用时该参数为NULL</p>
+</blockquote>
+<ul>
+<li>参数：str：你要切割的字符串  delim：切割的标准</li>
+</ul>
+<p>返回值：</p>
+<ul>
+<li>切割成功返回切割得到的子串</li>
+<li>字符串切割完毕或者切割过程中发了错误，返回NULL</li>
+</ul>
+<h2 id="判断子串"><a href="#判断子串" class="headerlink" title="判断子串"></a>判断子串</h2><p><code>char *strchr(const char *s, int c);</code></p>
+<ul>
+<li>参数：s ：你要查找的字符串  c：你要找的字符</li>
+</ul>
+<p>返回值：</p>
+<ul>
+<li>返回字符c首次在s中出现的位置</li>
+<li>如果没有出现，返回NULL</li>
+</ul>
+<p><code>char *strstr(const char *haystack, const char *needle);</code></p>
+<blockquote>
+<p>实际用途：判断文件类型</p>
+</blockquote>
+<hr>
+<p>封装线 [UNDONE!] 施工线</p>
+<hr>
+<h1 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h1><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">char</span> *p = <span class="string">&quot;hello&quot;</span>; <span class="comment">// 指针指向字符串常量 常量无法修改</span></span><br><span class="line">*p = <span class="string">&#x27;k&#x27;</span>; <span class="comment">// 断错误</span></span><br><span class="line"><span class="type">char</span> str[<span class="number">10</span>] = [<span class="string">&quot;hello&quot;</span>];</span><br><span class="line"><span class="type">char</span> *p;</span><br><span class="line">p = str;  <span class="comment">// 指针指向变量 ，可以修改</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>( 一 ) char p=”String” 此”String” 为常量 ( 二 ) strcpy(*str,”String”)，此字符串是常量</p>
+</blockquote>
+<h1 id="结构体-1"><a href="#结构体-1" class="headerlink" title="结构体"></a>结构体</h1><h2 id="位域"><a href="#位域" class="headerlink" title="位域"></a>位域</h2><p>有些信息在存储时，并不需要占用一个完整的字节， 而只需占几个或一个二进制位。例如在存放一个开关量时，只有0和1 两种状态， 用一位二进位即可。为了节省存储空间，并使处理简便，Ｃ语言又提供了一种数据结构，称为“位域”或“位段”。所谓“位域”是把一个字节中的二进位划分为几个不同的区域， 并说明每个区域的位数。每个域有一个域名，允许在程序中按域名进行操作。 这样就可以把几个不同的对象用一个字节的二进制位域来表示。</p>
+<ul>
+<li>详解  一、位域的定义和位域变量的说明位域定义与结构定义相仿，其形式为：  struct 位域结构名  { 位域列表 };  其中位域列表的形式为： 类型说明符 位域名：位域长度  例如：  <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">bs</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="type">int</span> a:<span class="number">8</span>;</span><br><span class="line">	<span class="type">int</span> b:<span class="number">2</span>;</span><br><span class="line">	<span class="type">int</span> c:<span class="number">6</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+  位域变量的说明与结构变量说明的方式相同。 可采用先定义后说明，同时定义说明或者直接说明这三种方式。例如：  <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">bs</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="type">int</span> a:<span class="number">8</span>;</span><br><span class="line">	<span class="type">int</span> b:<span class="number">2</span>;</span><br><span class="line">	<span class="type">int</span> c:<span class="number">6</span>;</span><br><span class="line">&#125;data;</span><br></pre></td></tr></table></figure>
+  说明data为bs变量，共占两个字节。其中位域a占8位，位域b占2位，位域c占6位。对于位域的定义尚有以下几点说明：<ol>
+<li>一个位域必须存储在同一个字节中，不能跨两个字节。如一个字节所剩空间不够存放另一位域时，应从下一单元起存放该位域。也可以有意使某位域从下一单元开始。例如：</li>
+</ol>
+  <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">bs</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="type">unsigned</span> a:<span class="number">4</span></span><br><span class="line">	<span class="type">unsigned</span> :<span class="number">0</span> <span class="comment">/*空域*/</span></span><br><span class="line">	<span class="type">unsigned</span> b:<span class="number">4</span> <span class="comment">/*从下一单元开始存放*/</span></span><br><span class="line">	<span class="type">unsigned</span> c:<span class="number">4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  在这个位域定义中，a占第一字节的4位，后4位填0表示不使用，b从第二字节开始，占用4位，c占用4位。<ol start="2">
+<li>由于位域不允许跨两个字节，因此位域的长度不能大于一个字节的长度，也就是说不能超过8位二进位。</li>
+<li>位域可以无位域名，这时它只用来作填充或调整位置。无名的位域是不能使用的。例如：</li>
+</ol>
+  <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">k</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="type">int</span> a:<span class="number">1</span></span><br><span class="line">	<span class="type">int</span> :<span class="number">2</span> <span class="comment">/*该2位不能使用*/</span></span><br><span class="line">	<span class="type">int</span> b:<span class="number">3</span></span><br><span class="line">	<span class="type">int</span> c:<span class="number">2</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+  从以上分析可以看出，位域在本质上就是一种结构类型， 不过其成员是按二进位分配的。  二、位域的使用位域的使用和结构成员的使用相同，其一般形式为： 位域变量名·位域名 位域允许用各种格式输出。  <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">main()&#123;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">bs</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="type">unsigned</span> a:<span class="number">1</span>;</span><br><span class="line">	<span class="type">unsigned</span> b:<span class="number">3</span>;</span><br><span class="line">	<span class="type">unsigned</span> c:<span class="number">4</span>;</span><br><span class="line">&#125; bit,*pbit;</span><br><span class="line"></span><br><span class="line">bit.a=<span class="number">1</span>;</span><br><span class="line">bit.b=<span class="number">7</span>;</span><br><span class="line">bit.c=<span class="number">15</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d,%d,%d\n&quot;</span>,bit.a,bit.b,bit.c);</span><br><span class="line"></span><br><span class="line">pbit=&amp;bit;</span><br><span class="line">pbit-&gt;a=<span class="number">0</span>;</span><br><span class="line">pbit-&gt;b&amp;=<span class="number">3</span>;</span><br><span class="line">pbit-&gt;c|=<span class="number">1</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d,%d,%d\n&quot;</span>,pbit-&gt;a,pbit-&gt;b,pbit-&gt;c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  上例程序中定义了位域结构bs，三个位域为a,b,c。说明了bs类型的变量bit和指向bs类型的指针变量pbit。这表示位域也是可以使用指针的。  程序的9、10、11三行分别给三个位域赋值。( 应注意赋值不能超过该位域的允许范围)程序第12行以整型量格式输出三个域的内容。第13行把位域变量bit的地址送给指针变量pbit。第14行用指针方式给位域a重新赋值，赋为0。第15行使用了复合的位运算符”&amp;=”， 该行相当于： pbit-&gt;b=pbit-&gt;b&amp;3位域b中原有值为7，与3作按位与运算的结果为3(111&amp;011=011,十进制值为3)。同样，程序第16行中使用了复合位运算”|=”， 相当于： pbit-&gt;c=pbit-&gt;c|1其结果为15。程序第17行用指针方式输出了这三个域的值。</li>
+</ul>
+<h1 id="IO缓冲区"><a href="#IO缓冲区" class="headerlink" title="IO缓冲区"></a>IO缓冲区</h1><h3 id="清空标准IO缓冲区"><a href="#清空标准IO缓冲区" class="headerlink" title="清空标准IO缓冲区"></a>清空标准IO缓冲区</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>(getchar() !=<span class="string">&#x27;\n&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="刷新缓冲区三个条件"><a href="#刷新缓冲区三个条件" class="headerlink" title="刷新缓冲区三个条件"></a>刷新缓冲区三个条件</h3><ul>
+<li>缓冲区中存在\n</li>
+<li>程序return 或者exit 程序结束</li>
+<li>缓冲区满</li>
+</ul>
+<h1 id="引用参考"><a href="#引用参考" class="headerlink" title="引用参考"></a>引用参考</h1><p><a href="https://zhuanlan.zhihu.com/p/162578969">必须知道的C语言知识细节：声明和定义</a></p>
+]]></content>
+      <categories>
+        <category>Tutorial</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>网络应用开发与系统集成</title>
     <url>/2022/07/02/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E4%B8%8E%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p><strong>采用TCP/IP体系结构的互联网已经称为企业，国家乃至全球的信息基础建设。设计，建造和测试基于TCP/IP技术的计算机网络是网络工程的任务</strong></p>
@@ -1885,25 +2601,6 @@
         <tag>Learning</tag>
         <tag>Network</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/07/02/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><span id="more"></span>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>Fydeos 配置Flutter开发环境</title>
