@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+
+
+<html lang="cn">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="Elimos" />
+       
+      <meta name="description" content="嗷嗷这里是Elimos的小站" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>浅谈校园网宽带破解 |  Elimos&#39;Home</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-浅谈校园网宽带破解"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  浅谈校园网宽带破解
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/07/09/%E6%B5%85%E8%B0%88%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%AE%BD%E5%B8%A6%E7%A0%B4%E8%A7%A3/" class="article-date">
+  <time datetime="2022-07-09T03:13:23.000Z" itemprop="datePublished">2022-07-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tutorial/">Tutorial</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">1.7k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">5 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前在衡的时候，宿舍的校园网还是50M带宽200块钱一个学期，没有任何登录限制，直接分配宽带账号，只需要宿舍内拨号校园网上网即可，那个时候还不知道咱学校的校园网是多给力，直到回来广东了，才领略到被奇葩校园网宽带支配的恐怖。一人一号双设备，0成本白赚钱，说是抢一点都不为过。</p>
+<p>这篇文章是自己作为一个不正常的人类的一种分享练习，如果在知识方面有错误的地方，请读者不吝赐教！请指出，本人将不胜感激，如果有新思路，或者有想讨论的点，欢迎来邮<code>elimos@foxmail.com</code></p>
+<span id="more"></span>
+
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><h2 id="入网步骤"><a href="#入网步骤" class="headerlink" title="入网步骤"></a>入网步骤</h2><p>先来看一下校园网宽带正常工作的流程，我们这边使用的是某🐏，插入网线后，电脑会跳转到校园网登录页面，此时会要求输入宽带账号密码，这时候倒也不用急着输入，隔壁有个客户端下载，那个才是真正的罪魁祸首。点击下载，安装，会得到以下绿油油的东西</p>
+<p><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fc9c43407-2780-4bb0-899b-a44c8201b333%2FUntitled.png?table=block&id=8d207261-81ae-4f5e-9e43-4028c32744b3&spaceId=a06190ac-c5a8-4c56-b3ed-a0be13119ca5&width=2000&userId=9d2af0ed-9fc9-4b46-840a-8a61cda676c0&cache=v2" alt="绿油油的界面"></p>
+<p>此时输入办卡的时候短信发给你的账号密码就可以正常冲浪了。</p>
+<h2 id="抓包分析"><a href="#抓包分析" class="headerlink" title="抓包分析"></a>抓包分析</h2><p>网上有提到过抓包获取真实宽带拨号的账号密码，但是又有帖子说采用信息摘要算法加密，账号密码前面加了不可见字符，需要用BP重定向，通过这种方式确实是可行，需要一定的操作成本，笔者就没这个心情去抓包了，因为他们使用这种方法拨号最后的结果是不稳定，会断连，而且这个方法也不一定适用于现在的版本，那些帖子都是八百年前发的了。</p>
+<h2 id="入网分析"><a href="#入网分析" class="headerlink" title="入网分析"></a>入网分析</h2><p>正常宽带的入网流程是办卡之后，给你一个宽带账号，通过一个猫连上光缆，猫接路由器，路由器通过猫来使用宽带账号进行拨号上网，此时路由器和猫就起到了NAT(网络地址转换)的作用，即将路由器下连接的设备，通过路由器(网关)，将内网(局域网)地址映射为外网地址，接入运营商网络，在网络收敛后达到互联互通的状态。</p>
+<p>当前校园网宽带的限设备就作用在拨号上网与NAT中间，将真实的拨号账号隐藏起来，给你一个只能用于那个绿油油的窗口的”宽带账号“，这就相当于一个买菜中介，正常情况下买菜可以你直接去菜市场买菜，一次带3根胡萝卜回来。这个买菜中介非要插个手，还把菜市场的路藏起来：”你不付钱人都别想出去，付了钱买了买菜资格之后，你出去买菜可以，先让我验一下带了几根胡萝卜，一个人最多带两根胡萝卜。“</p>
+<h1 id="学习思路"><a href="#学习思路" class="headerlink" title="学习思路"></a>学习思路</h1><p>既然我们已经知道了他在哪个层面上从中作梗，那么我们就可以有针对性性地绕开这种限制，笔者有两种思路</p>
+<p>一种就是<strong>伪造MAC</strong>地址，MAC其实就是设备的身份证，伪造MAC地址可以让接入宽带的路由器在识别的时候认为都是同一个设备。</p>
+<blockquote>
+<p>相当于出去买菜的时候大家都用同一个身份证，这个中介只看身份证来判断是不是同一个人</p>
+</blockquote>
+<p>但是在查阅了一些帖子后发现，运营商好像更新了UA检测，UA就是UserAgent,服务器通过识别 “UA”来确定用户所使用的操作系统版本、CPU 类型、浏览器版本等信息，他是包含在http协议报文的头部中的信息段，现代上网体系都是TCP/IP体系，只要是连接互联网，一般都是通过http协议进行三次握手来建立连接，也就是说，UA检测是绕不开的，但是也可以伪装，不过这就对接入设备有要求了，每一个连接都要进行修改UA，可以通过编写脚本来解决，但是自己造轮子就显然不是打工人想干的活了，如果有读者提供能用的具体实现，欢迎联系我更新文章，造福后代。</p>
+<blockquote>
+<p>UA检测就相当于中介不只看你的身份证了，还看你的脸</p>
+</blockquote>
+<p>另一种就是<strong>构建子网</strong>，简单粗暴，缺点就是网速受限</p>
+<blockquote>
+<p>相当于你帮一百个人带胡萝卜，虽然你一次只能带两根，但是带得勤啊，帮别人也带带。</p>
+</blockquote>
+<h1 id="构建子网的学习方法"><a href="#构建子网的学习方法" class="headerlink" title="构建子网的学习方法"></a>构建子网的学习方法</h1><p>最简单的构建子网的方法就是开热点，但是直接开是行不通的，还记得那个绿油油的东西嘛，你直接开热点虽然可以连接，但是连接设备多了之后就会检测到设备数量异常，因此我们需要一点手段</p>
+<h2 id="方法1-破解热点分享限制"><a href="#方法1-破解热点分享限制" class="headerlink" title="方法1: 破解热点分享限制"></a>方法1: 破解热点分享限制</h2><p>推荐使用这种方法，操作简单</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/PandaAdap/EShareTool/releases">Releases · PandaAdap/EShareTool</a></p>
+<ul>
+<li>下载以上补丁，解压在合适位置</li>
+<li>连接宽带</li>
+<li>在<code>设置-网络-移动热点</code>中开启热点（最好先按编辑设置一下热点名和密码）</li>
+<li>打开补丁，一路确定即可</li>
+<li>所有设备使用这一个wifi进行上网，注意别用的太狠哟，别人会没网的</li>
+</ul>
+<h3 id="Q-amp-A-1-：打开不了热点？"><a href="#Q-amp-A-1-：打开不了热点？" class="headerlink" title="Q&amp;A 1 ：打开不了热点？"></a>Q&amp;A 1 ：打开不了热点？</h3><blockquote>
+<p>需要无线网卡，没有无线网卡没法打开移动热点</p>
+</blockquote>
+<h3 id="Q-amp-A-2：热点使用的是5Ghz频段，有些设备搜索不到wifi"><a href="#Q-amp-A-2：热点使用的是5Ghz频段，有些设备搜索不到wifi" class="headerlink" title="Q&amp;A 2：热点使用的是5Ghz频段，有些设备搜索不到wifi?"></a>Q&amp;A 2：热点使用的是5Ghz频段，有些设备搜索不到wifi?</h3><ul>
+<li>在设置中搜索<code>查看网络连接</code></li>
+<li>选中你的无线网卡(一般带Wireless字样)，右键打开属性</li>
+</ul>
+<p><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F3c4eface-ef8e-41aa-9d35-ad94f1417e5e%2FUntitled.png?table=block&id=3977ea28-5d68-4abc-9735-1d472f5acdae&spaceId=a06190ac-c5a8-4c56-b3ed-a0be13119ca5&width=2000&userId=9d2af0ed-9fc9-4b46-840a-8a61cda676c0&cache=v2" alt="网络适配器选项"></p>
+<ul>
+<li>选中Mircosoft网络客户端(默认选中) , 点配置</li>
+</ul>
+<p><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F6068213c-24eb-4321-a983-8a543bf76e8d%2FUntitled.png?table=block&id=74ae7552-de9b-485c-ab68-3ffd82aa11fb&spaceId=a06190ac-c5a8-4c56-b3ed-a0be13119ca5&width=2000&userId=9d2af0ed-9fc9-4b46-840a-8a61cda676c0&cache=v2" alt="适配器设置"></p>
+<ul>
+<li>顶上标签选中高级 找到地下波段优先级(Preferred Band) ,选中2.4G优先即可</li>
+</ul>
+<p><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ff4bdd9dd-cf4c-4978-967b-c01a1edd4549%2FUntitled.png?table=block&id=13988e2f-7969-4bcd-ad0d-89e844992da1&spaceId=a06190ac-c5a8-4c56-b3ed-a0be13119ca5&width=2000&userId=9d2af0ed-9fc9-4b46-840a-8a61cda676c0&cache=v2" alt="修改优先级"></p>
+<ul>
+<li>保存，确定 ，退出，重启电脑 , 重新开启热点即可</li>
+</ul>
+<h2 id="方法2：虚拟机"><a href="#方法2：虚拟机" class="headerlink" title="方法2：虚拟机"></a>方法2：虚拟机</h2><blockquote>
+<p>最好还是一个外置无线网卡，不然可能会被检测到</p>
+</blockquote>
+<h3 id="安装虚拟机-vmware-virtualbox啥的都行"><a href="#安装虚拟机-vmware-virtualbox啥的都行" class="headerlink" title="安装虚拟机 vmware/virtualbox啥的都行"></a>安装虚拟机 vmware/virtualbox啥的都行</h3><h3 id="安装win10-OpenWRT"><a href="#安装win10-OpenWRT" class="headerlink" title="安装win10/OpenWRT"></a>安装win10/OpenWRT</h3><blockquote>
+<p>其他系统也可以，但是需要注意网卡驱动问题</p>
+</blockquote>
+<h3 id="在虚拟机中安装WIFI管家-在虚拟机中开启热点"><a href="#在虚拟机中安装WIFI管家-在虚拟机中开启热点" class="headerlink" title="在虚拟机中安装WIFI管家/在虚拟机中开启热点"></a>在虚拟机中安装WIFI管家/在虚拟机中开启热点</h3><blockquote>
+<p>各类wifi管家可以对热点进行限速，就是流氓了点<br>直接开启热点没法对设备进行限速，可能会各自卡各自的网速</p>
+</blockquote>
+<h1 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h1><p>本杂谈仅供学习交流使用</p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://elimos.cn/2022/07/09/%E6%B5%85%E8%B0%88%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%AE%BD%E5%B8%A6%E7%A0%B4%E8%A7%A3/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Learning/" rel="tag">Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Network/" rel="tag">Network</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2022/07/05/C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%A2%99/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">C语言基础——从入门到入墙</div>
+      </a>
+    
+  </nav>
+
+  
+   
+    
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2022
+        <i class="ri-heart-fill heart_icon"></i> Elimos
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Elimos&#39;Home"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.png">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/MathJax.js"></script>
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/config/TeX-AMS-MML_HTMLorMML-full.js"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>
