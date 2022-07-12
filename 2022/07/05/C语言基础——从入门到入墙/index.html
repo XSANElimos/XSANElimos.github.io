@@ -91,7 +91,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">11.3k</span>
+            <span class="post-count">11.5k</span>
         </span>
     </span>
 
@@ -124,13 +124,19 @@
 <p>1MB (Mega byte 兆字节 简称“兆”)=1024KB，</p>
 <p>1GB（Giga byte 吉字节 又称“千兆”)=1024MB，</p>
 <p>1TB（Tera byte 万亿字节 太字节)=1024GB，其中1024=2^10 ( 2 的10次方)，</p>
-<p>1PB（Peta byte 千万亿字节 拍字节）=1024TB，</p>
-<p>1EB（Exa byte 百亿亿字节 艾字节）=1024PB，</p>
-<p>1ZB (Zetta byte 十万亿亿字节 泽字节)= 1024 EB,</p>
-<p>1YB (Yotta byte 一亿亿亿字节 尧字节)= 1024 ZB,</p>
-<p>1BB (Bronto byte 一千亿亿亿字节)= 1024 YB</p>
-<p>1NB(Nona byte )= 1024BB</p>
-<p>1DB(Dogga byte)= 1024NB</p>
+<h2 id="字节序"><a href="#字节序" class="headerlink" title="字节序"></a>字节序</h2><p>计算机中存储数据的方式</p>
+<ul>
+<li><strong>大端序</strong></li>
+</ul>
+<blockquote>
+<p>数据的高字节存放到低地址，低字节存放到高地址</p>
+</blockquote>
+<ul>
+<li><strong>小端序</strong></li>
+</ul>
+<blockquote>
+<p>数据的高字节存放到高地址，低字节存放到低地址</p>
+</blockquote>
 <h2 id="进制之间的转换，进制加减法-UnDone"><a href="#进制之间的转换，进制加减法-UnDone" class="headerlink" title="进制之间的转换，进制加减法[!UnDone]"></a>进制之间的转换，进制加减法[!UnDone]</h2><ul>
 <li>短除法</li>
 </ul>
@@ -252,9 +258,9 @@
 <td>48</td>
 </tr>
 </tbody></table>
-<ul>
-<li>查看ASCII码表:<code>man ascii</code>  <img src="C%E8%AF%AD%E8%A8%80%20b18e6a4bf4e04023bb351dabeaa07422/Untitled.png" alt="Untitled">  <img src="C%E8%AF%AD%E8%A8%80%20b18e6a4bf4e04023bb351dabeaa07422/Untitled%201.png" alt="Untitled"></li>
-</ul>
+<p>查看ASCII码表:<code>man ascii</code></p>
+<p><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F736fcfd5-972a-4d01-a871-7405c931f90a%2FUntitled.png?table=block&id=b18e6a4b-f4e0-4023-bb35-1dabeaa07422&spaceId=a06190ac-c5a8-4c56-b3ed-a0be13119ca5&width=2000&userId=9d2af0ed-9fc9-4b46-840a-8a61cda676c0&cache=v2" alt="ascii1"></p>
+<p><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fce200f2b-055f-417b-b838-52e7b18e925b%2FUntitled.png?table=block&id=091e3d66-4222-4ebd-a78d-065b0e12d860&spaceId=a06190ac-c5a8-4c56-b3ed-a0be13119ca5&width=2000&userId=9d2af0ed-9fc9-4b46-840a-8a61cda676c0&cache=v2" alt="ascii2"></p>
 <p><strong>char字符越界</strong></p>
 <p>char类型数据本身占8位二进制，数据超出范围以后，计算机会把高位的去掉，保留低位</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字符数据越界演示</span></span><br><span class="line"><span class="type">char</span> a=<span class="number">300</span>;      <span class="comment">// 字符数据越界</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,a);  <span class="comment">// 结果:44</span></span><br><span class="line"></span><br><span class="line"><span class="type">char</span> a=<span class="number">417</span>;      <span class="comment">// 字符数据越界</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,a);  <span class="comment">// 结果:-95</span></span><br></pre></td></tr></table></figure>
@@ -298,7 +304,16 @@
 <li>只要不是0，全部都是真(TRUE)的</li>
 <li>只要是0，就是假(FALSE)的</li>
 </ul>
-<h2 id="复合数据类型-UnDone"><a href="#复合数据类型-UnDone" class="headerlink" title="复合数据类型[!UnDone]"></a>复合数据类型[!UnDone]</h2><h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><h3 id="共用体"><a href="#共用体" class="headerlink" title="共用体"></a>共用体</h3><h2 id="数据表示方式"><a href="#数据表示方式" class="headerlink" title="数据表示方式"></a>数据表示方式</h2><h3 id="格式控制符"><a href="#格式控制符" class="headerlink" title="格式控制符"></a>格式控制符</h3><table>
+<h2 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h2><p>枚举的本质就是整型常量</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p><code>**enum 枚举名&#123;枚举值&#125;;**</code></p>
+<ul>
+<li>没有赋值符</li>
+<li>枚举值不指定时，默认从0开始</li>
+<li>枚举值不可以是整型</li>
+</ul>
+<h2 id="复合数据类型"><a href="#复合数据类型" class="headerlink" title="复合数据类型"></a>复合数据类型</h2><h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><p>结构体中包含多种数据类型，可以处理复杂数据结构情况</p>
+<h3 id="共用体"><a href="#共用体" class="headerlink" title="共用体"></a>共用体</h3><p>共用体中所有元素公用一块内存区域，共用体大小取决于其中最大的元素的大小，一般应用于互斥变量</p>
+<h2 id="数据表示方式"><a href="#数据表示方式" class="headerlink" title="数据表示方式"></a>数据表示方式</h2><h3 id="格式控制符"><a href="#格式控制符" class="headerlink" title="格式控制符"></a>格式控制符</h3><table>
 <thead>
 <tr>
 <th>格式控制符</th>
@@ -814,7 +829,7 @@
 <blockquote>
 <p>实际用途：判断文件类型</p>
 </blockquote>
-<h2 id="二维数组名的写法-易混淆"><a href="#二维数组名的写法-易混淆" class="headerlink" title="二维数组名的写法(易混淆)"></a>二维数组名的写法(易混淆)</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">a          <span class="comment">// 二维数组首元素的地址 --》  a[0]的地址,数组指针  int (*p)[10]</span></span><br><span class="line">&amp;a         <span class="comment">// 数组指针    int (*p)[7][10]  </span></span><br><span class="line">a[<span class="number">0</span>]       <span class="comment">// 第一个一维数组int[10]的名字，表示该数组首元素a[0][0]的地址  int *</span></span><br><span class="line">&amp;a[<span class="number">0</span>]      <span class="comment">// 数组指针    int (*p)[10]</span></span><br><span class="line">a[<span class="number">0</span>][<span class="number">0</span>]    <span class="comment">// 非指针</span></span><br><span class="line">&amp;a[<span class="number">0</span>][<span class="number">0</span>]   <span class="comment">// int *</span></span><br><span class="line">a+<span class="number">1</span>        <span class="comment">// 加类型的大小  int[10]大小</span></span><br><span class="line">&amp;a+<span class="number">1</span>       <span class="comment">// 加的是整个数组的大小,int[7][10]大小</span></span><br><span class="line">a[<span class="number">0</span>]+<span class="number">1</span>     <span class="comment">// 4个字节</span></span><br><span class="line">&amp;a[<span class="number">0</span>]+<span class="number">1</span>    <span class="comment">// 加类型的大小  int[10]大小</span></span><br><span class="line">a[<span class="number">0</span>][<span class="number">0</span>]+<span class="number">1</span>  <span class="comment">// 把数据加1</span></span><br><span class="line">&amp;a[<span class="number">0</span>][<span class="number">0</span>]+<span class="number">1</span> <span class="comment">// 4个字节</span></span><br></pre></td></tr></table></figure>
+<h2 id="二维数组名的写法-易混淆"><a href="#二维数组名的写法-易混淆" class="headerlink" title="二维数组名的写法(易混淆)"></a>二维数组名的写法(易混淆)</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">a          <span class="comment">// 二维数组首元素的地址-&gt;  a[0]的地址,数组指针  int (*p)[10]</span></span><br><span class="line">&amp;a         <span class="comment">// 数组指针    int (*p)[7][10]  </span></span><br><span class="line">a[<span class="number">0</span>]       <span class="comment">// 第一个一维数组int[10]的名字，表示该数组首元素a[0][0]的地址  int *</span></span><br><span class="line">&amp;a[<span class="number">0</span>]      <span class="comment">// 数组指针    int (*p)[10]</span></span><br><span class="line">a[<span class="number">0</span>][<span class="number">0</span>]    <span class="comment">// 非指针</span></span><br><span class="line">&amp;a[<span class="number">0</span>][<span class="number">0</span>]   <span class="comment">// int *</span></span><br><span class="line">a+<span class="number">1</span>        <span class="comment">// 加类型的大小  int[10]大小</span></span><br><span class="line">&amp;a+<span class="number">1</span>       <span class="comment">// 加的是整个数组的大小,int[7][10]大小</span></span><br><span class="line">a[<span class="number">0</span>]+<span class="number">1</span>     <span class="comment">// 4个字节</span></span><br><span class="line">&amp;a[<span class="number">0</span>]+<span class="number">1</span>    <span class="comment">// 加类型的大小  int[10]大小</span></span><br><span class="line">a[<span class="number">0</span>][<span class="number">0</span>]+<span class="number">1</span>  <span class="comment">// 把数据加1</span></span><br><span class="line">&amp;a[<span class="number">0</span>][<span class="number">0</span>]+<span class="number">1</span> <span class="comment">// 4个字节</span></span><br></pre></td></tr></table></figure>
 
 <hr>
 <h1 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h1><p>用来存放变量在内存中的地址首地址，使用指针可以间接访问地址中的变量值，指针的大小跟指针的类型没有任何关系，只跟操作系统的位数有关。在32位系统上，所有的指针大小都是4个字节，在64位系统上，所有的指针大小都是8个字节，指针是来存放变量在内存中的首地址的，而64位系统上所有的地址长度都是8个字节</p>
@@ -1038,10 +1053,72 @@
 <blockquote>
 <p>char和short会被自动提升为int，float会被提升为double</p>
 </blockquote>
+<h2 id="主函数"><a href="#主函数" class="headerlink" title="主函数"></a>主函数</h2><p><strong><code>int main(int argc,char **argv)</code></strong></p>
+<p>主函数也是一个参数，在运行程序的时候，空格后跟着的字符串作为主函数的参数传入</p>
+<ul>
+<li>参数 argc 参数个数  argv 参数字符串组</li>
+</ul>
+<p>如果传入的是数字，这时候就需要将数字字符串转换成整型数字，<br><code>int atoi(const char *nptr);</code></p>
+<p>将字符串转换成数字，需要导入<code>#include &lt;stdlib.h&gt;</code></p>
+<ul>
+<li>参数：nptr –》你要转换的字符串</li>
+<li>返回值：转换后的整数</li>
+</ul>
 <h2 id="指针函数"><a href="#指针函数" class="headerlink" title="指针函数"></a>指针函数</h2><p>只要一个函数的返回值是指针，那么这个函数就叫做指针函数</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *<span class="title function_">p</span><span class="params">(<span class="type">int</span>,<span class="type">int</span>)</span>;   <span class="comment">// 指针函数</span></span><br><span class="line"><span class="comment">//返回函数指针: 返回值类型  (*函数名字(形参))(形参)</span></span><br><span class="line"><span class="comment">//返回数组指针: 数组类型  (*函数名字(形参))[数组元素个数]</span></span><br></pre></td></tr></table></figure>
 
 <hr>
+<h1 id="结构体-1"><a href="#结构体-1" class="headerlink" title="结构体"></a>结构体</h1><p>结构体是一种复合数据类型</p>
+<h2 id="结构体定义"><a href="#结构体定义" class="headerlink" title="结构体定义"></a>结构体定义</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> (结构体名)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">   <span class="comment">// 数据类型...</span></span><br><span class="line">&#125;(别名);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>不加结构体名则为匿名结构体</li>
+</ul>
+<h2 id="结构体使用"><a href="#结构体使用" class="headerlink" title="结构体使用"></a>结构体使用</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在定义前加上typedef </span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">student</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="type">char</span> name[<span class="number">10</span>]; <span class="comment">//姓名</span></span><br><span class="line">&#125;stu; </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">student</span> <span class="title">stu1</span>;</span></span><br><span class="line">stu stu2;  <span class="comment">//等价于struct student stu2;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//给匿名结构体类型取别名stu，结构体指针类型取别名stup</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>  </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="type">char</span> name[<span class="number">10</span>]; <span class="comment">//姓名</span></span><br><span class="line">&#125;stu,*stup;</span><br><span class="line">stu stu1;  <span class="comment">//定义了一个学生结构体变量叫做stu1</span></span><br><span class="line">stup p;   <span class="comment">//定义了一个学生结构体指针叫做p</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义结构体时，定义一个结构体变量stu并初始化stu里的元素值</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">student</span>  </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="type">char</span> name[<span class="number">10</span>]; <span class="comment">//姓名</span></span><br><span class="line">  <span class="type">int</span> age; <span class="comment">//年龄</span></span><br><span class="line">  <span class="type">float</span> score; <span class="comment">//分数</span></span><br><span class="line">&#125;stu=&#123;<span class="string">&quot;zhangsan&quot;</span>,<span class="number">18</span>,<span class="number">65.5</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>结构体中不能直接定义函数，但是可以声明函数指针，给函数指针赋值一个函数即可通过结构体调用结构体中定义的函数函数赋值的函数</li>
+</ul>
+<h2 id="结构体赋值与初始化"><a href="#结构体赋值与初始化" class="headerlink" title="结构体赋值与初始化"></a>结构体赋值与初始化</h2><ul>
+<li>直接赋值</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">structstudent stu1=&#123;<span class="string">&quot;zhangsan&quot;</span>,<span class="number">18</span>,<span class="number">56.9</span>&#125;;     </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>延迟赋值</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">student</span> <span class="title">stu1</span>;</span></span><br><span class="line"><span class="built_in">strcpy</span>(stu1.name,<span class="string">&quot;张三&quot;</span>);  <span class="comment">//char数组不能直接赋值字符串 stu1.name=&quot;张三&quot;;是错误的</span></span><br><span class="line">stu1.age=<span class="number">19</span>;</span><br><span class="line">stu1.score=<span class="number">85.5</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>命名赋值</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">student</span> <span class="title">stu1</span>=</span>&#123;</span><br><span class="line">   .score=<span class="number">56</span>,</span><br><span class="line">   .age=<span class="number">15</span>,</span><br><span class="line">   .name=<span class="string">&quot;李四&quot;</span></span><br><span class="line">&#125;;      </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>还可以部分初始化，十分灵活</p>
+</blockquote>
+<ul>
+<li>结构体赋值</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">student</span> <span class="title">stu2</span>;</span></span><br><span class="line">stu2=stu1;</span><br></pre></td></tr></table></figure>
+
+<h2 id="结构体运算"><a href="#结构体运算" class="headerlink" title="结构体运算"></a>结构体运算</h2><p><code>**.</code> 直接成员运算符**</p>
+<p>调用普通结构体里面的成员</p>
+<p><code>**-&gt;**</code> <strong>间接成员运算符</strong></p>
+<p>调用结构体指针里面的成员</p>
+<p><code>**sizeof()</code> 结构体大小**</p>
+<p>结构体的存储需要满足字节对齐，如果你的操作系统是64位系统：</p>
+<blockquote>
+<p>找到结构体中类型最大的成员，如果类型最大的成员&gt;=8字节，整个结构体依照8字节对齐，如果类型最大的成员&lt;8字节，整个结构体依照类型最大的成员对齐</p>
+</blockquote>
+<h3 id="位域"><a href="#位域" class="headerlink" title="位域"></a>位域</h3><p>有些信息在存储时，并不需要占用一个完整的字节， 而只需占几个或一个二进制位。例如在存放一个开关量时，只有0和1 两种状态， 用一位二进位即可。为了节省存储空间，并使处理简便，Ｃ语言又提供了一种数据结构，称为“位域”或“位段”。所谓“位域”是把一个字节中的二进位划分为几个不同的区域， 并说明每个区域的位数。每个域有一个域名，允许在程序中按域名进行操作。 这样就可以把几个不同的对象用一个字节的二进制位域来表示。</p>
+<h1 id="共用体-1"><a href="#共用体-1" class="headerlink" title="共用体"></a>共用体</h1><p>联合体中所有的成员共用同一块内存区域，联合体的大小由最大的成员大小来决定，也要满足字节对齐</p>
+<h2 id="共用体的定义"><a href="#共用体的定义" class="headerlink" title="共用体的定义"></a>共用体的定义</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> 共用体名</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="comment">//成员;</span></span><br><span class="line">&#125;(别名);</span><br></pre></td></tr></table></figure>
+
 <h1 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h1><p>表示变量的作用范围</p>
 <ul>
 <li>如果全局变量跟局部变量同名，此时局部变量会隐藏全局变量，导致全局变量不可见</li>
@@ -1118,7 +1195,12 @@
 <h2 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h2><p>修饰易变的变量，告诉编译器这个变量的值短时间内会改变很多次，不要去优化该变量</p>
 <p>一个定义为volatile的变量说明此变量可能会被意想不到地改变，这样，编译器就不会去假设这个变量的值了。精确地说就是，优化器在用到这个变量时必须每次都小心地重新读取这个变量的值，而不是使用保存在寄存器里的备份</p>
 <h3 id="编译器优化的含义"><a href="#编译器优化的含义" class="headerlink" title="编译器优化的含义"></a>编译器优化的含义</h3><p>例如编译器会聪明地认为如果一个变量i赋值给了a，然后执行几行代码之后再赋值给b，那么编译器会认为a和b是相等的（过程中没有代码改变i的值），其实这是不完全对的，有些情况下虽然代码不能改变i的值，但是其他行为可以改变（例如i是一个寄存器变量或者端口数据）</p>
-<h1 id="预处理编译"><a href="#预处理编译" class="headerlink" title="预处理编译"></a>预处理编译</h1><h2 id="导入头文件"><a href="#导入头文件" class="headerlink" title="导入头文件"></a>导入头文件</h2><p><code>#include &lt;头文件&gt;</code></p>
+<h1 id="预处理编译"><a href="#预处理编译" class="headerlink" title="预处理编译"></a>预处理编译</h1><h2 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h2><p>用来包含其他头文件,函数的声明，全局变量，结构体，共用体，枚举的定义，内联函数等</p>
+<p><code>#include &lt;头文件&gt;</code></p>
+<h2 id="自定义头文件"><a href="#自定义头文件" class="headerlink" title="自定义头文件"></a>自定义头文件</h2><p><code>“”</code> 用于自定义的头文件，编译器默认会先从当前路径下寻找这个头文件，如果找不到，就去系统的环境变量中查找头文件，两个地方都找不到就报错(没有这个头文件)</p>
+<p><code>&lt;&gt;</code> 通常用于系统提供的头文件，编译器默认去系统的环境变量中查找头文件</p>
+<h2 id="解决头文件重复包含的问题"><a href="#解决头文件重复包含的问题" class="headerlink" title="解决头文件重复包含的问题"></a>解决头文件重复包含的问题</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span>  _头文件的名字_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  _头文件的名字_H</span></span><br><span class="line">	<span class="comment">//头文件里面的具体内容</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
 <h2 id="宏定义define"><a href="#宏定义define" class="headerlink" title="宏定义define"></a>宏定义define</h2><p>用作字符的替换，一般写成大写</p>
 <ul>
 <li>普通宏定义 不带参数</li>
@@ -1139,7 +1221,16 @@
 <li>宏定义中的参数都是没有数据类型的</li>
 <li>带参数的宏定义，参数用圆括号括起来</li>
 </ol>
-<h2 id="条件编译"><a href="#条件编译" class="headerlink" title="条件编译"></a>条件编译</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> DEFINE</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> DEFINE</span></span><br><span class="line">	   <span class="built_in">printf</span>(<span class="string">&quot;ME&quot;</span>);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> DEFINE</span></span><br><span class="line">		 <span class="built_in">printf</span>(<span class="string">&quot;NOT ME&quot;</span>);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> </span></span><br></pre></td></tr></table></figure>
+<h2 id="条件编译"><a href="#条件编译" class="headerlink" title="条件编译"></a>条件编译</h2><p>满足条件，编译器就会编译对应的代码，不满足，代码会被编译器忽略(相当于注释掉了代码)</p>
+<ul>
+<li>条件满足编译</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifdef</span> DEFINE</span></span><br><span class="line">	<span class="comment">// CODE</span></span><br><span class="line"><span class="meta">#<span class="keyword">elif</span> OTHERDEFINE</span></span><br><span class="line">	 <span class="comment">// CODE</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span> OTHERDEFINE2</span></span><br><span class="line">	 <span class="comment">// CODE</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>条件不满足编译</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> DEFINE</span></span><br><span class="line">		 <span class="comment">// CODE</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> </span></span><br></pre></td></tr></table></figure>
 
 <h1 id="程序编译"><a href="#程序编译" class="headerlink" title="程序编译"></a>程序编译</h1><h2 id="一键生成可执行文件"><a href="#一键生成可执行文件" class="headerlink" title="一键生成可执行文件"></a>一键生成可执行文件</h2><p><code>gcc program.c -o program</code></p>
 <h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><p>展开预处理命令</p>
@@ -1150,26 +1241,6 @@
 <p><code>gcc program.s -o program.o -c</code></p>
 <h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p>链接生成可执行文件</p>
 <p><code>gcc program.o -o program</code></p>
-<hr>
-<p>封装线 [UNDONE!] 施工线</p>
-<hr>
-<h1 id="结构体-1"><a href="#结构体-1" class="headerlink" title="结构体"></a>结构体</h1><h2 id="位域"><a href="#位域" class="headerlink" title="位域"></a>位域</h2><p>有些信息在存储时，并不需要占用一个完整的字节， 而只需占几个或一个二进制位。例如在存放一个开关量时，只有0和1 两种状态， 用一位二进位即可。为了节省存储空间，并使处理简便，Ｃ语言又提供了一种数据结构，称为“位域”或“位段”。所谓“位域”是把一个字节中的二进位划分为几个不同的区域， 并说明每个区域的位数。每个域有一个域名，允许在程序中按域名进行操作。 这样就可以把几个不同的对象用一个字节的二进制位域来表示。</p>
-<ul>
-<li>详解  一、位域的定义和位域变量的说明位域定义与结构定义相仿，其形式为：  struct 位域结构名  { 位域列表 };  其中位域列表的形式为： 类型说明符 位域名：位域长度  例如：  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">bs</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="type">int</span> a:<span class="number">8</span>;</span><br><span class="line">	<span class="type">int</span> b:<span class="number">2</span>;</span><br><span class="line">	<span class="type">int</span> c:<span class="number">6</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-  位域变量的说明与结构变量说明的方式相同。 可采用先定义后说明，同时定义说明或者直接说明这三种方式。例如：  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">bs</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="type">int</span> a:<span class="number">8</span>;</span><br><span class="line">	<span class="type">int</span> b:<span class="number">2</span>;</span><br><span class="line">	<span class="type">int</span> c:<span class="number">6</span>;</span><br><span class="line">&#125;data;</span><br></pre></td></tr></table></figure>
-  说明data为bs变量，共占两个字节。其中位域a占8位，位域b占2位，位域c占6位。对于位域的定义尚有以下几点说明：<ol>
-<li>一个位域必须存储在同一个字节中，不能跨两个字节。如一个字节所剩空间不够存放另一位域时，应从下一单元起存放该位域。也可以有意使某位域从下一单元开始。例如：</li>
-</ol>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">bs</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="type">unsigned</span> a:<span class="number">4</span></span><br><span class="line">	<span class="type">unsigned</span> :<span class="number">0</span> <span class="comment">/*空域*/</span></span><br><span class="line">	<span class="type">unsigned</span> b:<span class="number">4</span> <span class="comment">/*从下一单元开始存放*/</span></span><br><span class="line">	<span class="type">unsigned</span> c:<span class="number">4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-  在这个位域定义中，a占第一字节的4位，后4位填0表示不使用，b从第二字节开始，占用4位，c占用4位。<ol start="2">
-<li>由于位域不允许跨两个字节，因此位域的长度不能大于一个字节的长度，也就是说不能超过8位二进位。</li>
-<li>位域可以无位域名，这时它只用来作填充或调整位置。无名的位域是不能使用的。例如：</li>
-</ol>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">k</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="type">int</span> a:<span class="number">1</span></span><br><span class="line">	<span class="type">int</span> :<span class="number">2</span> <span class="comment">/*该2位不能使用*/</span></span><br><span class="line">	<span class="type">int</span> b:<span class="number">3</span></span><br><span class="line">	<span class="type">int</span> c:<span class="number">2</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-  从以上分析可以看出，位域在本质上就是一种结构类型， 不过其成员是按二进位分配的。  二、位域的使用位域的使用和结构成员的使用相同，其一般形式为： 位域变量名·位域名 位域允许用各种格式输出。  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">main()&#123;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">bs</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="type">unsigned</span> a:<span class="number">1</span>;</span><br><span class="line">	<span class="type">unsigned</span> b:<span class="number">3</span>;</span><br><span class="line">	<span class="type">unsigned</span> c:<span class="number">4</span>;</span><br><span class="line">&#125; bit,*pbit;</span><br><span class="line"></span><br><span class="line">bit.a=<span class="number">1</span>;</span><br><span class="line">bit.b=<span class="number">7</span>;</span><br><span class="line">bit.c=<span class="number">15</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d,%d,%d\n&quot;</span>,bit.a,bit.b,bit.c);</span><br><span class="line"></span><br><span class="line">pbit=&amp;bit;</span><br><span class="line">pbit-&gt;a=<span class="number">0</span>;</span><br><span class="line">pbit-&gt;b&amp;=<span class="number">3</span>;</span><br><span class="line">pbit-&gt;c|=<span class="number">1</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d,%d,%d\n&quot;</span>,pbit-&gt;a,pbit-&gt;b,pbit-&gt;c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-  上例程序中定义了位域结构bs，三个位域为a,b,c。说明了bs类型的变量bit和指向bs类型的指针变量pbit。这表示位域也是可以使用指针的。  程序的9、10、11三行分别给三个位域赋值。( 应注意赋值不能超过该位域的允许范围)程序第12行以整型量格式输出三个域的内容。第13行把位域变量bit的地址送给指针变量pbit。第14行用指针方式给位域a重新赋值，赋为0。第15行使用了复合的位运算符”&amp;=”， 该行相当于： pbit-&gt;b=pbit-&gt;b&amp;3位域b中原有值为7，与3作按位与运算的结果为3(111&amp;011=011,十进制值为3)。同样，程序第16行中使用了复合位运算”|=”， 相当于： pbit-&gt;c=pbit-&gt;c|1其结果为15。程序第17行用指针方式输出了这三个域的值。</li>
-</ul>
-<h1 id="引用参考"><a href="#引用参考" class="headerlink" title="引用参考"></a>引用参考</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/162578969">必须知道的C语言知识细节：声明和定义</a></p>
  
       <!-- reward -->
       
