@@ -298,7 +298,7 @@
 <li>只要是0，就是假(FALSE)的</li>
 </ul>
 <h2 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h2><p>枚举的本质就是整型常量</p>
-<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p><code>**enum 枚举名&#123;枚举值&#125;;**</code></p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p><strong><code>enum 枚举名&#123;枚举值&#125;;</code></strong></p>
 <ul>
 <li>没有赋值符</li>
 <li>枚举值不指定时，默认从0开始</li>
@@ -509,7 +509,7 @@
 <li>表达式1为真返回表达式2</li>
 <li>表达式1为假返回表达式3</li>
 </ul>
-<h2 id="其它运算符-UnDone"><a href="#其它运算符-UnDone" class="headerlink" title="其它运算符[!UnDone]"></a>其它运算符[!UnDone]</h2><p><code>++</code> 自增</p>
+<h2 id="其它运算符"><a href="#其它运算符" class="headerlink" title="其它运算符"></a>其它运算符</h2><p><code>++</code> 自增</p>
 <p>前置自增</p>
 <blockquote>
 <p><code>++a;</code>先把a的值加1，然后使用加1之后的结果</p>
@@ -708,7 +708,7 @@
 </blockquote>
 <hr>
 <h1 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h1><p>用二维的方式存放大量相同类型的数据</p>
-<h2 id="二维数组定义"><a href="#二维数组定义" class="headerlink" title="二维数组定义"></a>二维数组定义</h2><p><code>**[数据类型] &#123;数组名&#125;[行数][列数]**</code></p>
+<h2 id="二维数组定义"><a href="#二维数组定义" class="headerlink" title="二维数组定义"></a>二维数组定义</h2><p><strong><code>[数据类型] &#123;数组名&#125;[行数][列数]</code></strong></p>
 <p>任何合法的C语言类型，都可以定义成二维数组</p>
 <blockquote>
 <p><code>二维数组名</code>在表达式中代表该数组首元素的地址 相当于一个指向本数组首元素地址的指针<br><code>&amp;二维数组名</code>表示的是指向整个数组的一个指针(数组指针)</p>
@@ -829,7 +829,7 @@
 <blockquote>
 <p>首地址:在一定地址范围中地址值最小的那个，就是该地址范围的首地址</p>
 </blockquote>
-<h2 id="指针定义"><a href="#指针定义" class="headerlink" title="指针定义"></a>指针定义</h2><p><code>**[数据类型] *指针名**</code></p>
+<h2 id="指针定义"><a href="#指针定义" class="headerlink" title="指针定义"></a>指针定义</h2><p><strong><code>[数据类型] *指针名</code></strong></p>
 <blockquote>
 <p>指针本身也是一个变量，只是这个变量存储的是地址值</p>
 </blockquote>
@@ -857,7 +857,7 @@
 <ul>
 <li>解引用：获取地址中保存的内容</li>
 </ul>
-<p><code>***指针**</code></p>
+<p><code>*指针</code></p>
 <blockquote>
 <p>用于指针访问或者修改变量的值</p>
 </blockquote>
@@ -924,7 +924,7 @@
 <p>一个指针减去另外一个指针有实际意义(在数组中是有意义的)<br>一个指针减另外一个指针，结果不是地址值直接相减，而是两个指针之间相差的对应类型之间的位数<br><code>++</code> 自增</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">*p++   <span class="comment">//先解引用p，然后p加1</span></span><br><span class="line">(*p)++ <span class="comment">//先解引用p，然后把解引用的值加1</span></span><br><span class="line">*++p   <span class="comment">//先将++用于p，然后解引用</span></span><br><span class="line">++*p   <span class="comment">//先解引用，然后把结果加1</span></span><br></pre></td></tr></table></figure>
 
-<p><code>**=</code> 关系判断</p>
+<p><code>=</code> 关系判断</p>
 <blockquote>
 <p>比较两个指针是否相等</p>
 </blockquote>
@@ -975,7 +975,7 @@
 <li>形参：形式参数，函数声明中或者函数定义中圆括号里面的就是形参</li>
 <li>实参：实际参数，函数调用时程序员传递的参数就是实参</li>
 </ul>
-<h2 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h2><p><code>**函数名字(实参);**</code></p>
+<h2 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h2><p><strong><code>函数名字(实参);</code></strong></p>
 <h2 id="函数调用的过程"><a href="#函数调用的过程" class="headerlink" title="函数调用的过程"></a>函数调用的过程</h2><p>当你调用一个函数的时候，操作系统会帮你把这个函数入栈(压栈)<br>当函数调用结束的时候，函数会被自动出栈(弹栈)</p>
 <h3 id="入栈-压栈"><a href="#入栈-压栈" class="headerlink" title="入栈(压栈)"></a>入栈(压栈)</h3><p>把局部变量/函数的入口地址存放到栈空间的栈顶</p>
 <h3 id="出栈-弹栈"><a href="#出栈-弹栈" class="headerlink" title="出栈(弹栈)"></a>出栈(弹栈)</h3><p>把局部变量/函数的入口地址从栈空间的栈顶自动释放掉</p>
